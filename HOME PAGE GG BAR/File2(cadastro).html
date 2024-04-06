@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <style>
+            div {
+                padding: 10px;
+                background-color: #f6f6f6;
+                overflow: hidden;
+            }
+            input[type="text"],
+            textarea,
+            select {
+                font: 17px Calibri;
+                width: 70%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+            input[type="button"] {
+                font: 17px Calibri;
+                width: auto;
+                float: right;
+                cursor: pointer;
+                padding: 7px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div>
+            <div>
+                <input type="text" id="txtName" placeholder="Nome Cliente" />
+                <!--INPUT DO USER DO TIPO TEXTO, TEM OUTROS TIPOS-->
+            </div>
+            <div>
+                <input type="text" id="txtIdade" placeholder="idade cliente" />
+            </div>
+            <div>
+                <input type="text" id="txtEmail" placeholder="e-mail cliente" />
+            </div>
+            <div>
+                <select id="selCountry">
+                    <!-- O SELECT É AQUELA CAIXINHA DE SELECIONAR A INFO-->
+                    <option selected value="">-- Choose your country --</option>
+                    <option value="India">India</option>
+                    <option value="Japan">Japan</option>
+                    <option value="USA">USA</option>
+                </select>
+            </div>
+            <div>
+                <input
+                    type="button"
+                    id="bt"
+                    value="Salvar"
+                    onclick="Salvar()"
+                />
+            </div>
+        </div>
+
+        <script>
+            function Salvar() {
+                //pegando variáveis
+                var name = document.getElementById("txtName").value;
+                var age = document.getElementById("txtIdade").value;
+                var email = document.getElementById("txtEmail").value;
+                var country = document.getElementById("selCountry").value;
+
+                var data =
+                    "\r Name: " +
+                    name +
+                    " \r\n " +
+                    "Idade: " +
+                    age +
+                    " \r\n " +
+                    "Email: " +
+                    email +
+                    " \r\n " +
+                    "País: " +
+                    country +
+                    " \r\n ";
+                confirm(data);
+            }
+        </script>
+    </body>
+</html>

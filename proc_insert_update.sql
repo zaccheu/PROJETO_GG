@@ -1,0 +1,23 @@
+﻿EXEC PROC_INSERIR_CLIENTES 111, '44433322', 'VICENTE SILVA', 'M', 'VICENTE@gmail.com', '11937233243', '', 'SP'  /* INSERT */
+
+CREATE PROCEDURE UPDATE_CLIENTES(
+	
+	@IdCliente	INT,
+	@Documento VARCHAR (15),
+	@Nome VARCHAR (50),
+	@Sexo VARCHAR (1),
+	@Email VARCHAR (50),
+	@Telefone VARCHAR (11),
+	@Fax VARCHAR (11),
+	@UF VARCHAR (2)
+
+)
+
+
+AS
+
+BEGIN
+
+	UPDATE Clientes SET Documento
+
+END
