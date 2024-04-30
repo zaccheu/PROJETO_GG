@@ -9,15 +9,16 @@ using System.Reflection.Metadata;
 namespace CadastroClientes.Models.Repository
 {
     //responsável por salvar as coisas no banco de dados
-    public class GGRepository
+    public class ClienteRepository
     {
         //Crie uma instância de IConfiguration para carregar o appsettings.json
         IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json")
             .Build();
+
         public AppConnection _appConfig { get; set; }
-        public GGRepository()
+        public ClienteRepository()
         {
             _appConfig = new AppConnection(configuration);
         }

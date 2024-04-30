@@ -17,13 +17,13 @@ namespace CadastroClientes.Controllers
         {
             try
             {
-                GGRepository clientess = new GGRepository();
+                ClienteRepository clientess = new ClienteRepository();
 
                 var retorno = clientess.GetClient(cliente.IdCliente);
 
                 if (retorno != null)
                 {
-                    clientess.Atualizar(cliente);
+                    clientess.Atualizar(cliente); 
                 }
                 else
                 {
@@ -42,7 +42,7 @@ namespace CadastroClientes.Controllers
         {
             try
             {
-                GGRepository clientes = new GGRepository();
+                ClienteRepository clientes = new ClienteRepository();
                 clientes.Atualizar(cliente);
             }
             catch (Exception ex)
@@ -59,7 +59,7 @@ namespace CadastroClientes.Controllers
             List<Cliente> listaCli = null;
             try
             {
-                GGRepository clientesRepo = new GGRepository();
+                ClienteRepository clientesRepo = new ClienteRepository();
                 listaCli = clientesRepo.Listar();
 
                 if (listaCli == null)
@@ -79,7 +79,7 @@ namespace CadastroClientes.Controllers
         {
             try
             {
-                GGRepository clientes = new GGRepository();
+                ClienteRepository clientes = new ClienteRepository();
                 bool retornoDelete = clientes.Deletar(IdCliente);
 
                 return retornoDelete;
@@ -98,7 +98,7 @@ namespace CadastroClientes.Controllers
             List<Cliente> listaCli = null;
             try
             {
-                GGRepository clientes = new GGRepository();
+                ClienteRepository clientes = new ClienteRepository();
                 var retorno = clientes.GetClient(IdCliente);
                 return retorno;
             }

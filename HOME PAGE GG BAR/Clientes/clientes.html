@@ -246,7 +246,7 @@
                         location.reload();
                     },
                     error: function (msg) {
-                        alert('error');
+                        alert('error do salvar');
                     },
                 });
                 AdicionarLinhaTabela(
@@ -254,17 +254,17 @@
                     Clientes.nome,
                     Clientes.telefone,
                     Clientes.instagram,
-                    Clientes.sexo
-                    //Clientes.vip
+                    Clientes.sexo,
+                    Clientes.vip
                 );
                 $("#myModal").modal().hide();
             }
         }
 
-        function AdicionarLinhaTabela(IdCliente, Nome, Telefone, Sexo, VIP) {
+        function AdicionarLinhaTabela(IdCliente, Nome, Telefone, Instagram, Sexo, VIP) {
             var linhaNova = '<tr id="Linha' + IdCliente + '"><td>';
             linhaNova = linhaNova + IdCliente + "</td><td>" + Nome + "</td><td>" + Telefone +
-                "</td><td>" +
+                "</td><td>" + Instagram + "</td><td>" +
                 Sexo +
                 '</td><td><a href="#" onclick="javascript:GetClient(' +
                 VIP +
