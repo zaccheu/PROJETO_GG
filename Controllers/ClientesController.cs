@@ -11,20 +11,13 @@ namespace CadastroClientes.Controllers
     [ApiController]
     public class ClientesController : ControllerBase
     {
-        //Crie uma instância de IConfiguration para carregar o appsettings.json
-        IConfiguration configuration = new ConfigurationBuilder()
-            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            .AddJsonFile("appsettings.json")
-            .Build();
-
+        
         [HttpPost("Salvar")]
-        public object Salvar([FromBody] Cliente cliente)
+        public IActionResult Salvar(Cliente cliente)
         {
             try
             {
-                var appConfig = new AppConnection(configuration);
-
-                GGRepository clientess = new GGRepository(appConfig);
+                GGRepository clientess = new GGRepository();
 
                 var retorno = clientess.GetClient(cliente.IdCliente);
 
@@ -41,7 +34,7 @@ namespace CadastroClientes.Controllers
             {
 
             }
-            return null;
+            return Ok("Ok");
         }
 
         [HttpPost("Alterar")]
@@ -49,9 +42,7 @@ namespace CadastroClientes.Controllers
         {
             try
             {
-                var appConfig = new AppConnection(configuration);
-
-                GGRepository clientes = new GGRepository(appConfig);
+                GGRepository clientes = new GGRepository();
                 clientes.Atualizar(cliente);
             }
             catch (Exception ex)
@@ -68,9 +59,7 @@ namespace CadastroClientes.Controllers
             List<Cliente> listaCli = null;
             try
             {
-                var appConfig = new AppConnection(configuration);
-
-                GGRepository clientesRepo = new GGRepository(appConfig);
+                GGRepository clientesRepo = new GGRepository();
                 listaCli = clientesRepo.Listar();
 
                 if (listaCli == null)
@@ -90,9 +79,7 @@ namespace CadastroClientes.Controllers
         {
             try
             {
-                var appConfig = new AppConnection(configuration);
-
-                GGRepository clientes = new GGRepository(appConfig);
+                GGRepository clientes = new GGRepository();
                 bool retornoDelete = clientes.Deletar(IdCliente);
 
                 return retornoDelete;
@@ -111,9 +98,7 @@ namespace CadastroClientes.Controllers
             List<Cliente> listaCli = null;
             try
             {
-                var appConfig = new AppConnection(configuration);
-
-                GGRepository clientes = new GGRepository(appConfig);
+                GGRepository clientes = new GGRepository();
                 var retorno = clientes.GetClient(IdCliente);
                 return retorno;
             }

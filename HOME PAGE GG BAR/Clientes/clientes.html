@@ -97,14 +97,14 @@
                                         <label class="radio-inline">
                                             <input type="radio"
                                                    name="sexo"
-                                                   value="FEMININO" />
+                                                   value="F" />
                                             Feminino
                                         </label>
 
                                         <label class="radio-inline">
                                             <input type="radio"
                                                    name="sexo"
-                                                   value="MASCULINO" />
+                                                   value="M" />
                                             Masculino
                                         </label>
                                     </div>
@@ -118,14 +118,14 @@
                                         <label class="radio-inline">
                                             <input type="radio"
                                                    name="VIP"
-                                                   value="Yes" />
+                                                   value="True" />
                                             Sim
                                         </label>
 
                                         <label class="radio-inline">
                                             <input type="radio"
                                                    name="VIP"
-                                                   value="No" />
+                                                   value="False" />
                                             Não
                                         </label>
                                     </div>
@@ -226,8 +226,9 @@
                 telefone: $("#Telefone").val(),
                 instagram: $("#Instagram").val(),
                 sexo: $('input[name="sexo"]:checked').val(),
-                vip: $('input[name="VIP"]:checked').val()
+                vip: $('input[name="VIP"]:checked').val() == "True"
             };
+            console.log(Clientes);
 
             if (Clientes.idCliente == "") {
                 alert("O campo IdCliente é obrigatório");

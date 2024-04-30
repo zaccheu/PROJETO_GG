@@ -1,7 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Reflection.Metadata;
 
 namespace CadastroClientes.Models.Repository
@@ -9,12 +11,16 @@ namespace CadastroClientes.Models.Repository
     //responsável por salvar as coisas no banco de dados
     public class GGRepository
     {
-        private AppConnection _appConfig;
-        public GGRepository(AppConnection appConfig)
+        //Crie uma instância de IConfiguration para carregar o appsettings.json
+        IConfiguration configuration = new ConfigurationBuilder()
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            .AddJsonFile("appsettings.json")
+            .Build();
+        public AppConnection _appConfig { get; set; }
+        public GGRepository()
         {
-            _appConfig = appConfig;
+            _appConfig = new AppConnection(configuration);
         }
-
         public void Salvar(Cliente clientes)
         {
             try
@@ -38,7 +44,10 @@ namespace CadastroClientes.Models.Repository
                     }
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) 
+            {
+                Debug.WriteLine(ex.ToString());
+            }
             /*//LISTAMOS TODOS OS ITENS CADASTRO
             var listaClientes = Listar();
 
