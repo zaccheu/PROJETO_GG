@@ -1,7 +1,3 @@
-Home page: (98% feita):
-• falta talvez analisar as cores;
-• adicionar os botões nos quadros pintados na tela.
-• arredondar os botões na tela.
 
 Demais pages:
 • ligar a API nas páginas.

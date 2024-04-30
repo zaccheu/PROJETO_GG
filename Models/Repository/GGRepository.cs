@@ -7,10 +7,10 @@ using System.Reflection.Metadata;
 namespace CadastroClientes.Models.Repository
 {
     //responsável por salvar as coisas no banco de dados
-    public class ClientesRepository
+    public class GGRepository
     {
         private AppConnection _appConfig;
-        public ClientesRepository(AppConnection appConfig)
+        public GGRepository(AppConnection appConfig)
         {
             _appConfig = appConfig;
         }
