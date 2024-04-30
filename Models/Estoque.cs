@@ -2,10 +2,7 @@
 {
     public class Estoque
     {
-        public int idProduto { get; set; }
-        public string name { get; set; }
-        public double preço { get; set; }
-        public double quantidadeKG { get; set; }
-        public int quantidadeUnidades { get; set; }
+        public int IdProduto { get; set; }
+        public double Quantidade { get; set; }
     }
 }

@@ -225,6 +225,7 @@
 				LimparCamposForm();
 			}
 		}
+
 		function AdicionarLinhaTabela(Documento, Nome, Email, Telefone)
 		{			
 			var linhaNova = '<tr id="Linha'+Documento+'"><td>' 
@@ -260,11 +261,11 @@
                 AdicionarLinhaTabela(OBJ[i].documento, OBJ[i].nome, OBJ[i].email, OBJ[i].telefone);
 				}
 				alert('Sucesso!');
-				}
-        error: function (OBJ) {
-            alert('error');
-		}
-		});
+				},
+				error: function (OBJ) {
+				alert('error');
+			}
+			});
 	</script>
 	
 </body>

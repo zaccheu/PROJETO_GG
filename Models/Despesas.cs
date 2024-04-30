@@ -2,10 +2,10 @@
 {
     public class Despesas
     {
-        public string descrição { get; set; }
-        public double valor { get; set; }
-        public int mes { get; set; }
-        public int ano { get; set; }
-        public string conta { get; set; }
+        public int IdDespesa { get; set; }
+        public float Valor { get; set; }
+        //public datetime Data { get; set; }
+        public string TipoDespesa { get; set; }
+        public string Descricao { get; set; }
     }
 }
