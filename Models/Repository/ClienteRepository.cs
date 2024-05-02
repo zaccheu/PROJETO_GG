@@ -34,7 +34,6 @@ namespace CadastroClientes.Models.Repository
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@IdCliente", clientes.IdCliente);
                         cmd.Parameters.AddWithValue("@Nome", clientes.Nome);
                         cmd.Parameters.AddWithValue("@Telefone", clientes.Telefone);
                         cmd.Parameters.AddWithValue("@Instagram", clientes.Instagram);
@@ -81,7 +80,6 @@ namespace CadastroClientes.Models.Repository
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@IdCliente", clientes.IdCliente);
                         cmd.Parameters.AddWithValue("@Nome", clientes.Nome);
                         cmd.Parameters.AddWithValue("@Telefone", clientes.Telefone);
                         cmd.Parameters.AddWithValue("@Instagram", clientes.Instagram);
@@ -113,7 +111,6 @@ namespace CadastroClientes.Models.Repository
                             {
                                 Cliente cliente = new Cliente();
 
-                                cmd.Parameters.AddWithValue("@IdCliente", cliente.IdCliente);
                                 cmd.Parameters.AddWithValue("@Nome", cliente.Nome);
                                 cmd.Parameters.AddWithValue("@Telefone", cliente.Telefone);
                                 cmd.Parameters.AddWithValue("@Instagram", cliente.Instagram);
@@ -206,7 +203,7 @@ namespace CadastroClientes.Models.Repository
             return false; */
         }
 
-        public Cliente? GetClient(int IdCliente)
+        public Cliente? GetClient(string telefone)
         {
             Cliente cliente = null;
 
@@ -219,7 +216,7 @@ namespace CadastroClientes.Models.Repository
                     using (SqlCommand cmd = new SqlCommand("SP_GET_CLIENT", connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@IdCliente", IdCliente);
+                        cmd.Parameters.AddWithValue("@Telefone", telefone);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -227,11 +224,10 @@ namespace CadastroClientes.Models.Repository
                             {
                                 cliente = new Cliente();
 
-                                cliente.IdCliente = Convert.ToInt32(reader["IdCliente"].ToString());
                                 cliente.Nome = reader["Nome"].ToString();
                                 cliente.Telefone = reader["Telefone"].ToString();
                                 cliente.Instagram = reader["Instagram"].ToString();
-                                cliente.Sexo = Convert.ToChar(reader["Sexo"].ToString());
+                                cliente.Sexo = reader["Sexo"].ToString();
                                 cliente.VIP = Convert.ToBoolean(reader["VIP"].ToString());
                             }
                         }

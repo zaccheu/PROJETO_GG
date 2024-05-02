@@ -19,7 +19,7 @@ namespace CadastroClientes.Controllers
             {
                 ClienteRepository clientess = new ClienteRepository();
 
-                var retorno = clientess.GetClient(cliente.IdCliente);
+                var retorno = clientess.GetClient(cliente.Telefone);
 
                 if (retorno != null)
                 {
@@ -93,13 +93,13 @@ namespace CadastroClientes.Controllers
         }
 
         [HttpGet("GetClient")]
-        public object GetClient(int IdCliente)
+        public object GetClient(string telefone)
         {
             List<Cliente> listaCli = null;
             try
             {
                 ClienteRepository clientes = new ClienteRepository();
-                var retorno = clientes.GetClient(IdCliente);
+                var retorno = clientes.GetClient(telefone);
                 return retorno;
             }
             catch (Exception ex)
