@@ -298,14 +298,15 @@
         function GetClient(Telefone) {
             $.ajax({
                 type: "GET",
-                url: "https://localhost:44344/api/Clientes/GetClient?Telefone=" + Telefone,
+                url: "https://localhost:44344/api/Clientes/GetClient?telefone=" + Telefone,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (OBJ) {
                     $("#myModal").modal().show();
                     $("#nome").val(OBJ.nome);
-                    $('input[name="sexo"]:checked').val(OBJ.sexo),
                     $("#telefone").val(OBJ.telefone);
+                    $("#instagram").val(OBJ.Instagram);
+                    $('input[name="sexo"]:checked').val(OBJ.sexo);    
                     $('input[name="VIP"]:checked').val() == "True";
                     $("#telefone").data("editing", true); // Define um data attribute para indicar edição
                 },
