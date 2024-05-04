@@ -27,14 +27,13 @@ namespace CadastroClientes.Controllers
         {
             try
             {
-                // Instanciando um objeto da classe GGRepository para acessar os métodos de manipulação de dados
-                GGRepository clientess = new GGRepository();
+                ClienteRepository clientess = new ClienteRepository();
 
-                var retorno = clientess.GetClient(cliente.IdCliente);
+                var retorno = clientess.GetClient(cliente.Telefone);
 
                 if (retorno != null)
                 {
-                    clientess.Atualizar(cliente);
+                    clientess.Atualizar(cliente); 
                 }
                 else
                 {
@@ -54,7 +53,7 @@ namespace CadastroClientes.Controllers
         {
             try
             {
-                GGRepository clientes = new GGRepository();
+                ClienteRepository clientes = new ClienteRepository();
                 clientes.Atualizar(cliente);
             }
             catch (Exception ex)
@@ -71,7 +70,7 @@ namespace CadastroClientes.Controllers
             List<Cliente> listaCli = null;
             try
             {
-                GGRepository clientesRepo = new GGRepository();
+                ClienteRepository clientesRepo = new ClienteRepository();
                 listaCli = clientesRepo.Listar();
 
                 if (listaCli == null)
@@ -91,7 +90,7 @@ namespace CadastroClientes.Controllers
         {
             try
             {
-                GGRepository clientes = new GGRepository();
+                ClienteRepository clientes = new ClienteRepository();
                 bool retornoDelete = clientes.Deletar(IdCliente);
 
                 return retornoDelete;
@@ -105,13 +104,13 @@ namespace CadastroClientes.Controllers
         }
 
         [HttpGet("GetClient")]
-        public object GetClient(int IdCliente)
+        public object GetClient(string telefone)
         {
             List<Cliente> listaCli = null;
             try
             {
-                GGRepository clientes = new GGRepository();
-                var retorno = clientes.GetClient(IdCliente);
+                ClienteRepository clientes = new ClienteRepository();
+                var retorno = clientes.GetClient(telefone);
                 return retorno;
             }
             catch (Exception ex)
