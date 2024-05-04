@@ -1,3 +1,13 @@
+/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//* Autor(es): 
+//* Data da última modificação: 30/04/2024
+//* Descrição: Configuração da aplicação ASP.NET Core, incluindo a configuração do Swagger e do CORS, pipeline HTTP, controlers e execução da aplicação
+//* Testes: 
+//* Anotações:
+    -(?) O servidor web é "fornecido" pela aplicação ASP.NET Core.
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+// Instanciando classes usada para configurar a applicação ASP.NET Core
 var builder = WebApplication.CreateBuilder(args);
 
 

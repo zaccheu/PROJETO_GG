@@ -1,4 +1,13 @@
-﻿using CadastroClientes.Models;
+﻿/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//* Autor(es): 
+//* Data da última modificação: 30/04/2024
+//* Descrição: Um ASP.NET Core Web API controller. Possui métodos para lidar com requests HTTP e manipulação/gerenciamento de dados 
+//* Testes: 
+//* Anotações:
+    - Controller: determines what response to send back to a user when a user makes a browser request to the application.
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+using CadastroClientes.Models;
 using CadastroClientes.Models.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +20,14 @@ namespace CadastroClientes.Controllers
     [ApiController]
     public class ClientesController : ControllerBase
     {
-        
+
+        // Um "action method":public, non-static method in a controller class that handles HTTP requests and returns HTTP responses
         [HttpPost("Salvar")]
         public IActionResult Salvar(Cliente cliente)
         {
             try
             {
+                // Instanciando um objeto da classe GGRepository para acessar os métodos de manipulação de dados
                 GGRepository clientess = new GGRepository();
 
                 var retorno = clientess.GetClient(cliente.IdCliente);
@@ -34,6 +45,7 @@ namespace CadastroClientes.Controllers
             {
 
             }
+            // returna informação para o cliente web
             return Ok("Ok");
         }
 

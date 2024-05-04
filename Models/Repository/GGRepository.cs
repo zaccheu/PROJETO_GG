@@ -1,4 +1,12 @@
-﻿using Microsoft.Data.SqlClient;
+﻿/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+//* Autor(es): 
+//* Data da última modificação: 30/04/2024
+//* Descrição: Responsável por operações de CRUD no banco de dados
+//* Testes: 
+//* Anotações:
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
+
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -25,14 +33,17 @@ namespace CadastroClientes.Models.Repository
         {
             try
             {
+                // Cria uma nova instância de SqlConnection (para connectar com a base de dados) usando a string de conexão do appsettings.json, utlizando "using" para garantir que a conexão será fechada após o uso
                 using (SqlConnection connection = new SqlConnection(_appConfig.ConnectionString))
                 {
                     connection.Open();
 
+                    // Cria uma nova instância de SqlCommand (para executar comandos SQL) com o nome da procedure (o qual é definido na base de dados) e a conexão
                     using (SqlCommand cmd = new SqlCommand("SP_INSERT_CLIENT", connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
+                        //associando os valores dos parâmetros da procedure ("@...") com os valores do objeto Cliente
                         cmd.Parameters.AddWithValue("@IdCliente", clientes.IdCliente);
                         cmd.Parameters.AddWithValue("@Nome", clientes.Nome);
                         cmd.Parameters.AddWithValue("@Telefone", clientes.Telefone);
@@ -106,10 +117,13 @@ namespace CadastroClientes.Models.Repository
 
                     using (SqlCommand cmd = new SqlCommand("SP_LIST_CLIENT", connection))
                     {
+                        //(?) executa o cmd (que é uma procedure) e retorna um SqlDataReader (stream com rows do result set da query)
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
+                            //loop para ler cada linha do result set
                             while (reader.Read())
                             {
+                                //para cada row returnada, adiciona um novo objeto Cliente na lista de retorno
                                 Cliente cliente = new Cliente();
 
                                 cmd.Parameters.AddWithValue("@IdCliente", cliente.IdCliente);
@@ -205,6 +219,7 @@ namespace CadastroClientes.Models.Repository
             return false; */
         }
 
+        // Cliente?: objecto anulável retornado pelo método
         public Cliente? GetClient(int IdCliente)
         {
             Cliente cliente = null;
