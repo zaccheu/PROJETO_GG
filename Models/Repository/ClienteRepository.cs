@@ -78,7 +78,7 @@ namespace CadastroClientes.Models.Repository
             File.AppendAllText(@"C:\\Users\\Guzac\\OneDrive\\Documentos\\GitHub\\CursoRafaelPT2\\CadastroBaseClientes\\CadastroBaseClientes\\DB\\fileDB.text", backupFile);
             */
         }
-        public void Atualizar(Cliente clientes)
+        public void Atualizar(Cliente cliente)
         {
             try
             {
@@ -90,11 +90,11 @@ namespace CadastroClientes.Models.Repository
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@Nome", clientes.Nome);
-                        cmd.Parameters.AddWithValue("@Telefone", clientes.Telefone);
-                        cmd.Parameters.AddWithValue("@Instagram", clientes.Instagram);
-                        cmd.Parameters.AddWithValue("@Sexo", clientes.Sexo);
-                        cmd.Parameters.AddWithValue("@VIP", clientes.VIP);
+                        cmd.Parameters.AddWithValue("@Nome", cliente.Nome);
+                        cmd.Parameters.AddWithValue("@Telefone", cliente.Telefone);
+                        cmd.Parameters.AddWithValue("@Instagram", cliente.Instagram);
+                        cmd.Parameters.AddWithValue("@Sexo", cliente.Sexo);
+                        cmd.Parameters.AddWithValue("@VIP", cliente.VIP);
 
                         cmd.ExecuteNonQuery();
                     }

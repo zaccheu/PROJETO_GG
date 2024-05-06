@@ -44,8 +44,8 @@ namespace CadastroClientes.Controllers
             {
 
             }
-            // returna informação para o cliente web
-            return Ok("Ok");
+            //return Ok("Ok");
+            return Ok(cliente);
         }
 
         [HttpPost("Alterar")]
