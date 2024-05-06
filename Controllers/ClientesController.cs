@@ -34,7 +34,8 @@ namespace CadastroClientes.Controllers
             {
 
             }
-            return Ok("Ok");
+            //return Ok("Ok");
+            return Ok(cliente);
         }
 
         [HttpPost("Alterar")]
