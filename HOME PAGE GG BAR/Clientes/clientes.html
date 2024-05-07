@@ -275,7 +275,7 @@
             $("#nome").val("");
             $("#sexo").val("");
             $("#telefone").val("");
-
+            $("#sexo").val("");
             $("#VIP").val("");
         }
 
@@ -305,7 +305,7 @@
                     $("#myModal").modal().show();
                     $("#nome").val(OBJ.nome);
                     $("#telefone").val(OBJ.telefone);
-                    $("#instagram").val(OBJ.Instagram);
+                    $("#instagram").val(OBJ.instagram);
                     $('input[name="sexo"]:checked').val(OBJ.sexo);    
                     $('input[name="VIP"]:checked').val() == "True";
                     $("#telefone").data("editing", true); // Define um data attribute para indicar edição
@@ -334,7 +334,7 @@
                 dataType: "json",
                 success: function (OBJ) {
                     for (var i = 0; i < OBJ.length; i++) {
-                        AdicionarLinhaTabela(OBJ[i].nome, OBJ[i].telefone, OBJ[i].Instagram, OBJ[i].sexo, OBJ[i].VIP);
+                        AdicionarLinhaTabela(OBJ[i].nome, OBJ[i].telefone, OBJ[i].instagram, OBJ[i].sexo, OBJ[i].vip);
                     }
                 },
                 error: function (OBJ) {
