@@ -2,6 +2,7 @@
 using CadastroClientes.Models.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Identity.Client;
 using System.Collections.Specialized;
 
@@ -76,12 +77,12 @@ namespace CadastroClientes.Controllers
         }
 
         [HttpDelete("Deletar")]
-        public object Deletar(int IdCliente)
+        public object Deletar(string Telefone)
         {
             try
             {
                 ClienteRepository clientes = new ClienteRepository();
-                bool retornoDelete = clientes.Deletar(IdCliente);
+                bool retornoDelete = clientes.Deletar(Telefone);
 
                 return retornoDelete;
             }

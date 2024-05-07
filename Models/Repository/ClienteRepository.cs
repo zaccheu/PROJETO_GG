@@ -111,11 +111,11 @@ namespace CadastroClientes.Models.Repository
                             {
                                 Cliente cliente = new Cliente();
 
-                                cmd.Parameters.AddWithValue("@Nome", cliente.Nome);
-                                cmd.Parameters.AddWithValue("@Telefone", cliente.Telefone);
-                                cmd.Parameters.AddWithValue("@Instagram", cliente.Instagram);
-                                cmd.Parameters.AddWithValue("@Sexo", cliente.Sexo);
-                                cmd.Parameters.AddWithValue("@VIP", cliente.VIP);
+                                cliente.Nome = reader["Nome"].ToString();
+                                cliente.Telefone = reader["Telefone"].ToString();
+                                cliente.Instagram = reader["Instagram"].ToString();
+                                cliente.Sexo = reader["Sexo"].ToString();
+                                cliente.VIP = Convert.ToBoolean(reader["VIP"]);
 
                                 retorno.Add(cliente);
                             }
@@ -137,7 +137,7 @@ namespace CadastroClientes.Models.Repository
             */
         }
 
-        public bool Deletar(int IdCliente)
+        public bool Deletar(string Telefone)
         {
             bool retorno = false;
 
@@ -151,7 +151,7 @@ namespace CadastroClientes.Models.Repository
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("@IdCliente", IdCliente);
+                        cmd.Parameters.AddWithValue("@Telefone", Telefone);
 
                         int linhas = cmd.ExecuteNonQuery();
                         if (linhas > 0)
