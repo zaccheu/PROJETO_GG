@@ -1,11 +1,15 @@
-
-Demais pages:
-• ligar a API nas páginas.
-
 Na page do Financeiro:
 • montar uma função pra mostrar um gráfico com os faturamentos e as variações com as outras variáveis
 (como se as outras variáveis fossem igual o faturamento(um eixo do gráfico)).
 -> teria que utilizar uma biblioteca para isso.
+
+A FAZERES:
+-> ver a API de gateway de pagamento, se dá ou não pra fazer.
+-> hospedagem.
+-> faturamento tem que puxar despesa.
+-> fazer controller e repository de todas as classes.
+-> as telas das classes.
+-> ORM.
 
 Projeto de organização feito para o Bar GG, englobando vários fatores do negócio, como:
 • Faturamento.
