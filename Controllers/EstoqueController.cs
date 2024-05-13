@@ -31,7 +31,7 @@ namespace CadastroClientes.Controllers
             }
             catch (Exception ex)
             {
-                // Handle the exception, e.g., log it or return an appropriate error response
+                Console.WriteLine(ex.Message);
             }
 
             return Ok(estoque);
@@ -47,7 +47,7 @@ namespace CadastroClientes.Controllers
             }
             catch (Exception ex)
             {
-                // Handle the exception, e.g., log it or return an appropriate error response
+                Console.WriteLine(ex.Message);
             }
 
             return Ok(estoque);
