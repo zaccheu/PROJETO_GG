@@ -43,7 +43,7 @@ namespace CadastroClientes.Controllers
             }
             catch (Exception ex)
             {
-                // Lidar com a exceção aqui
+                Console.WriteLine(ex.Message);
             }
 
             return Ok(produto);
@@ -77,7 +77,7 @@ namespace CadastroClientes.Controllers
             }
             catch (Exception ex)
             {
-                // Lidar com a exceção aqui
+                Console.WriteLine(ex.Message);      
             }
 
             return Ok(produtos);
@@ -95,7 +95,7 @@ namespace CadastroClientes.Controllers
             }
             catch (Exception ex)
             {
-                // Lidar com a exceção aqui
+                Console.WriteLine(ex.Message);  
             }
 
             return Ok(retorno);
@@ -113,7 +113,7 @@ namespace CadastroClientes.Controllers
             }
             catch (Exception ex)
             {
-                // Lidar com a exceção aqui
+                Console.WriteLine(ex.Message);  
             }
 
             return Ok(produto);
