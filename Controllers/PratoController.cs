@@ -7,6 +7,9 @@
     - "Pratos" ou "Produtos"?
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
+using CadastroClientes.Models;
+using CadastroClientes.Models.Repository;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -17,7 +20,103 @@ using System.Reflection.Metadata;
 
 namespace CadastroClientes.Controllers
 {
-    public class Prato
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProdutosController : ControllerBase
     {
+        [HttpPost("Inserir")]
+        public IActionResult Inserir(Produtos produto)
+        {
+            try
+            {
+                PratosRepository produtosRepo = new PratosRepository();
+                var existente = produtosRepo.ObterPorId(produto.IdProduto);
+
+                if (existente != null)
+                {
+                    produtosRepo.Atualizar(produto);
+                }
+                else
+                {
+                    produtosRepo.Inserir(produto);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Lidar com a exceção aqui
+            }
+
+            return Ok(produto);
+        }
+
+        [HttpPut("Atualizar")]
+        public IActionResult Atualizar(Produtos produto)
+        {
+            try
+            {
+                PratosRepository produtosRepo = new PratosRepository();
+                produtosRepo.Atualizar(produto);
+            }
+            catch (Exception ex)
+            {
+                // Lidar com a exceção aqui
+            }
+
+            return Ok();
+        }
+
+        [HttpGet("ListarTodos")]
+        public IActionResult ListarTodos()
+        {
+            List<Produtos> produtos = null;
+
+            try
+            {
+                PratosRepository produtosRepo = new PratosRepository();
+                produtos = produtosRepo.ListarTodos();
+            }
+            catch (Exception ex)
+            {
+                // Lidar com a exceção aqui
+            }
+
+            return Ok(produtos);
+        }
+
+        [HttpDelete("Deletar")]
+        public IActionResult Deletar(int idProduto)
+        {
+            bool retorno = false;
+
+            try
+            {
+                PratosRepository produtosRepo = new PratosRepository();
+                retorno = produtosRepo.Deletar(idProduto);
+            }
+            catch (Exception ex)
+            {
+                // Lidar com a exceção aqui
+            }
+
+            return Ok(retorno);
+        }
+
+        [HttpGet("ObterPorId")]
+        public IActionResult ObterPorId(int idProduto)
+        {
+            Produtos produto = null;
+
+            try
+            {
+                PratosRepository produtosRepo = new PratosRepository();
+                produto = produtosRepo.ObterPorId(idProduto);
+            }
+            catch (Exception ex)
+            {
+                // Lidar com a exceção aqui
+            }
+
+            return Ok(produto);
+        }
     }
 }
