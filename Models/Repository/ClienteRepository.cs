@@ -1,7 +1,7 @@
 ﻿/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 //* Autor(es): 
 //* Data da última modificação: 30/04/2024
-//* Descrição: Responsável por operações de CRUD no banco de dados
+//* Descrição: Responsável por operações de CRUD no banco de dados para a table de clientes
 //* Testes: 
 //* Anotações:
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
