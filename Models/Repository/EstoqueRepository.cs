@@ -47,8 +47,8 @@ namespace CadastroClientes.Models.Repository
                     {
                         // Especifica que o comando é um stored procedure e o executa
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@Id_produto", estoque.IdProduto);
-                        cmd.Parameters.AddWithValue("@quantidade", estoque.Quantidade);
+                        cmd.Parameters.AddWithValue("@IdProduto", estoque.IdProduto);
+                        cmd.Parameters.AddWithValue("@Quantidade", estoque.Quantidade);
 
                         cmd.ExecuteNonQuery();
                     }
@@ -76,14 +76,37 @@ namespace CadastroClientes.Models.Repository
                     {
                         // Especifica que o comando é um stored procedure e o executa
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@Id_produto", estoque.IdProduto);
-                        cmd.Parameters.AddWithValue("@quantidade", estoque.Quantidade);
+                        cmd.Parameters.AddWithValue("@IdProduto", estoque.IdProduto);
+                        cmd.Parameters.AddWithValue("@Quantidade", estoque.Quantidade);
 
                         cmd.ExecuteNonQuery();
                     }
                 }
             }
 
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        //Método para deletar um registro na tabela de estoque
+        public void Deletar(int idProduto)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_appConfig.ConnectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand("SP_DELETE_ESTOQUE", connection))
+                    {
+                        // Especifica que o comando é um stored procedure e o executa
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@IdProduto", idProduto);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);

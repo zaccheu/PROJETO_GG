@@ -52,5 +52,21 @@ namespace CadastroClientes.Controllers
 
             return Ok(estoque);
         }
+
+        [HttpPost("Deletar")]
+        public IActionResult Deletar([FromBody] Estoque estoque)
+        {
+            try
+            {
+                EstoqueRepository estoques = new EstoqueRepository();
+                estoques.Deletar(estoque.IdProduto);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return Ok(estoque);
+        }
     }
 }
