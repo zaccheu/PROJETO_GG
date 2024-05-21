@@ -59,7 +59,7 @@ namespace CadastroClientes.Controllers
             }
             catch (Exception ex)
             {
-                // Lidar com a exceção aqui
+                Console.Write(ex.Message);
             }
 
             return Ok();
