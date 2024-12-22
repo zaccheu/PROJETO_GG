@@ -6,7 +6,7 @@
 //* Anotações:
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
-namespace CadastroClientes.Models.Repository
+namespace CadastroClientes.Repository
 {
     public class AppConnection
     {

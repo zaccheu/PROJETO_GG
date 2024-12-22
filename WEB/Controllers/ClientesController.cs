@@ -7,15 +7,10 @@
     - Controller: determines what response to send back to a user when a user makes a browser request to the application.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
-using CadastroClientes.Models;
-using CadastroClientes.Models.Repository;
-using Microsoft.AspNetCore.Http;
+using CadastroClientes.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Identity.Client;
-using System.Collections.Specialized;
 
-namespace CadastroClientes.Controllers
+namespace CadastroClientes.WEB.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -34,7 +29,7 @@ namespace CadastroClientes.Controllers
 
                 if (retorno != null)
                 {
-                    clientess.Atualizar(cliente); 
+                    clientess.Atualizar(cliente);
                 }
                 else
                 {

@@ -1,5 +1,8 @@
-﻿namespace CadastroClientes.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace CadastroClientes.Models
 {
+    [Table("Despesas")]
     public class Despesas
     {
         public int IdDespesa { get; set; }
