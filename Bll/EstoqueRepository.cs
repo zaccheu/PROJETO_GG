@@ -7,6 +7,8 @@
     - PRECISA CONFIRMAR O NOME CORRETO DOS STORED PROCEDURES E DOS CAMPOS DA BASE DE DADOS  
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
+using CadastroClientes.Models;
+using CadastroClientes.Repository;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -15,7 +17,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Reflection.Metadata;
 
-namespace CadastroClientes.Models.Repository
+namespace CadastroClientes.Bll
 {
     public class EstoqueRepository
     {
@@ -52,11 +54,11 @@ namespace CadastroClientes.Models.Repository
 
                         cmd.ExecuteNonQuery();
                     }
-                    
+
                 }
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }

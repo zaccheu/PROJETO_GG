@@ -8,6 +8,8 @@
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
 // Instanciando classes usada para configurar a applicação ASP.NET Core
+using CadastroClientes.Bll;
+using CadastroClientes.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +30,11 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 
 builder.Services.AddDbContext<MeuDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MeuDbContext")));
+
+builder.Services.AddScoped<ClienteRepository>();
+builder.Services.AddScoped<PratoRepository>();
+//builder.Services.AddScoped<PedidoRepository>();
+//builder.Services.AddScoped<DespesaRepository>();
 
 var app = builder.Build();
 

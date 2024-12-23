@@ -9,8 +9,10 @@
 using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Diagnostics;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http.HttpResults;
+using CadastroClientes.Models;
 
 namespace CadastroClientes.Repository
 {
@@ -23,12 +25,6 @@ namespace CadastroClientes.Repository
             .AddJsonFile("appsettings.json")
             .Build();
 
-        public AppConnection _appConfig { get; set; }
-        public ClienteRepository()
-        {
-            _appConfig = new AppConnection(configuration);
-        }
-
         private readonly MeuDbContext _context;
 
         // Injeção de dependência do DbContext
@@ -37,77 +33,49 @@ namespace CadastroClientes.Repository
             _context = context;
         }
 
-        public void Salvar(Cliente clientes)
+        public RetornoAcao Salvar(Cliente cliente)
         {
+            RetornoAcao retorno = new RetornoAcao();
             try
             {
-                // Cria uma nova instância de SqlConnection (para connectar com a base de dados) usando a string de conexão do appsettings.json, utlizando "using" para garantir que a conexão será fechada após o uso
-                using (SqlConnection connection = new SqlConnection(_appConfig.ConnectionString))
+                if (cliente.IdCliente != 0)
                 {
-                    connection.Open();
+                    var clienteExiste = _context.Clientes
+                                                .Where(c => c.IdCliente == cliente.IdCliente)
+                                                .FirstOrDefault();
 
-                    // Cria uma nova instância de SqlCommand (para executar comandos SQL) com o nome da procedure (o qual é definido na base de dados) e a conexão
-                    using (SqlCommand cmd = new SqlCommand("SP_INSERT_CLIENT", connection))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
+                    ConverteEntity(clienteExiste, cliente);
 
-                        cmd.Parameters.AddWithValue("@Nome", clientes.Nome);
-                        cmd.Parameters.AddWithValue("@Telefone", clientes.Telefone);
-                        cmd.Parameters.AddWithValue("@Instagram", clientes.Instagram);
-                        cmd.Parameters.AddWithValue("@Sexo", clientes.Sexo);
-                        cmd.Parameters.AddWithValue("@VIP", clientes.VIP);
+                    _context.Clientes.Update(clienteExiste);
 
-                        cmd.ExecuteNonQuery();
-                    }
+                    retorno.Mensagem = "Cliente atualizado com sucesso!";
                 }
+                else
+                {
+                    _context.Clientes.Add(cliente);
+                    retorno.Mensagem = "Cliente salvo com sucesso!";
+                }
+
+                _context.SaveChanges();
+
+                retorno.Ok = true;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.ToString());
+                retorno.Mensagem = "ERRO!";
             }
-            /*//LISTAMOS TODOS OS ITENS CADASTRO
-            var listaClientes = Listar();
-
-            //ENCONTRAMOS O ITEM A SER EXCLUÍDO
-            var item = listaClientes.Where(t => t.Documento == clientes.Documento).FirstOrDefault();
-
-            //SE EXISTIR, ELE DELETA
-            if (item != null)
-            {
-                Deletar(clientes.Documento);
-            }
-            
-            //INSERE DE QUALQUER JEITOO
-            var clientesTexto = JsonConvert.SerializeObject(clientes) + "," + Environment.NewLine;
-        
-
-            string backupFile = JsonConvert.SerializeObject(clientes) + "," + Environment.NewLine;
-            File.AppendAllText(@"C:\\Users\\Guzac\\OneDrive\\Documentos\\GitHub\\CursoRafaelPT2\\CadastroBaseClientes\\CadastroBaseClientes\\DB\\fileDB.text", backupFile);
-            */
+            return retorno;
         }
         public void Atualizar(Cliente cliente)
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(_appConfig.ConnectionString))
-                {
-                    connection.Open();
-
-                    using (SqlCommand cmd = new SqlCommand("SP_UPDATE_CLIENT", connection))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@Nome", cliente.Nome);
-                        cmd.Parameters.AddWithValue("@Telefone", cliente.Telefone);
-                        cmd.Parameters.AddWithValue("@Instagram", cliente.Instagram);
-                        cmd.Parameters.AddWithValue("@Sexo", cliente.Sexo);
-                        cmd.Parameters.AddWithValue("@VIP", cliente.VIP);
-
-                        cmd.ExecuteNonQuery();
-                    }
-                }
+                _context.Clientes.Update(cliente);
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
         public List<Cliente> Listar()
         {
@@ -116,9 +84,9 @@ namespace CadastroClientes.Repository
 
             try
             {
-                return _context.Clientes
-                           .FromSqlRaw("EXEC SP_LIST_CLIENT") // Exemplo de execução de stored procedure
-                           .ToList();
+                retorno = _context.Clientes.ToList(); // Exemplo de execução de stored procedure
+
+                return retorno;
             }
             catch (Exception ex)
             {
@@ -126,117 +94,76 @@ namespace CadastroClientes.Repository
             }
         }
 
-        public bool Deletar(string Telefone)
+        public RetornoAcao Deletar(string Telefone)
         {
-            bool retorno = false;
-
+            RetornoAcao retorno = new RetornoAcao();
             try
             {
-                using (SqlConnection connection = new SqlConnection(_appConfig.ConnectionString))
+                Cliente cliente = _context.Clientes.Where(c => c.Telefone == Telefone).FirstOrDefault();
+
+                if (cliente == null)
                 {
-                    connection.Open();
-
-                    using (SqlCommand cmd = new SqlCommand("SP_DELETE_CLIENT", connection))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        cmd.Parameters.AddWithValue("@Telefone", Telefone);
-
-                        int linhas = cmd.ExecuteNonQuery();
-                        if (linhas > 0)
-                        {
-                            retorno = true;
-                        }
-                    }
+                    retorno.Mensagem = "Prato não encontrado!";
+                }
+                else
+                {
+                    _context.Remove(cliente);
+                    _context.SaveChanges();
+                    retorno.Mensagem = "Prato deletado com sucesso!";
                 }
             }
-            catch (Exception ex) { }
-            return true;
-            /*// Listou os itens cadastrados 
-            var listaClientes = Listar();
-
-            //encontrou o que excluir
-            var item = listaClientes.Where(t => t.Documento == Documento).FirstOrDefault();
-            if (item != null)
-            {   // removeu da lista
-                listaClientes.Remove(item);
-
-                //limpou o banco de dados
-                File.WriteAllText("C:\\Users\\Guzac\\OneDrive\\Documentos\\GitHub\\CursoRafaelPT2\\CadastroBaseClientes\\CadastroBaseClientes\\DB\\fileDB.text", string.Empty);
-
-                //escreveu no banco de dados nossa lista sem o item excluído
-                foreach(var I in listaClientes)
-                {
-                    Salvar(I);
-                }
-
-                return true;
+            catch (Exception ex)
+            {
+                retorno.Mensagem = ex.Message;
             }
-            if (Documento == "string")
-            {   
-                // removeu da lista
-                listaClientes.Remove(item);
-
-                //limpou o banco de dados
-                File.WriteAllText("C:\\Users\\Guzac\\OneDrive\\Documentos\\GitHub\\CursoRafaelPT2\\CadastroBaseClientes\\CadastroBaseClientes\\DB\\fileDB.text", string.Empty);
-
-                //escreveu no banco de dados nossa lista sem o item excluído
-                foreach (var I in listaClientes)
-                {
-                    Salvar(I);
-                }
-
-                return true;
-            }
-
-            return false; */
+            return retorno;
         }
 
-        public Cliente? GetClient(string telefone)
+        public RetornoAcao Inativar(Cliente cliente)
+        {
+            RetornoAcao retorno = new RetornoAcao();
+            try
+            {
+                cliente.Ativo = false;
+
+                _context.Update(cliente);
+
+                _context.SaveChanges();
+                retorno.Mensagem = "Cliente inativado com sucesso!";
+            }
+            catch (Exception ex)
+            {
+                retorno.Mensagem = ex.Message;
+            }
+            return retorno;
+        }
+
+        public Cliente GetClient(string telefone)
         {
             Cliente cliente = null;
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(_appConfig.ConnectionString))
-                {
-                    connection.Open();
+                cliente = _context.Clientes.Where(c => c.Telefone == telefone).FirstOrDefault();
 
-                    using (SqlCommand cmd = new SqlCommand("SP_GET_CLIENT", connection))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@Telefone", telefone);
-
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                cliente = new Cliente();
-
-                                cliente.Nome = reader["Nome"].ToString();
-                                cliente.Telefone = reader["Telefone"].ToString();
-                                cliente.Instagram = reader["Instagram"].ToString();
-                                cliente.Sexo = reader["Sexo"].ToString();
-                                cliente.VIP = Convert.ToBoolean(reader["VIP"].ToString());
-                            }
-                        }
-                    }
-                }
+                return cliente;
             }
             catch (Exception ex)
             {
-
+                throw new Exception(ex.Message);
             }
-            /*//GETCLIENT
-            try
-            {
-                var ClienteLista = Listar();
-                var item = ClienteLista.Where(t => t.Documento == Documento).FirstOrDefault();
+        }
 
-                return item;
-            } 
-            catch (Exception ex) { return null; } */
-            return cliente;
+        private Cliente ConverteEntity(Cliente existente, Cliente alterado)
+        {
+            existente.Nome = alterado.Nome;
+            existente.Telefone = alterado.Telefone;
+            existente.Instagram = alterado.Instagram;
+            existente.VIP = alterado.VIP;
+            existente.SEXO = alterado.SEXO;
+            existente.Ativo = alterado.Ativo;
+
+            return existente;
         }
     }
 }
