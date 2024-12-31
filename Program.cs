@@ -32,7 +32,8 @@ builder.Services.AddDbContext<MeuDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MeuDbContext")));
 
 builder.Services.AddScoped<ClienteRepository>();
-builder.Services.AddScoped<PratoRepository>();
+builder.Services.AddScoped<ProdutoRepository>();
+builder.Services.AddScoped<PedidoProdutoRepository>();
 //builder.Services.AddScoped<PedidoRepository>();
 //builder.Services.AddScoped<DespesaRepository>();
 

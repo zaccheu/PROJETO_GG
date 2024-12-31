@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Pedidos.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="SistemaCorporativo.html" />
   </ItemGroup>
 

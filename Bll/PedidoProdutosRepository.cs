@@ -4,7 +4,7 @@
 //* Descrição: Operações CRUD para a entidade Prato
 //* Testes: 
 //* Anotações:
-    - "Pratos" ou "Produtos"?
+    - "Produtos" ou "Produtos"?
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
 using CadastroClientes.Controllers;
@@ -21,7 +21,7 @@ using System.Reflection.Metadata;
 
 namespace CadastroClientes.Bll
 {
-    public class PratoRepository
+    public class PedidoProdutoRepository
     {
         IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
@@ -31,48 +31,71 @@ namespace CadastroClientes.Bll
         private readonly MeuDbContext _context;
 
         // Injeção de dependência do DbContext
-        public PratoRepository(MeuDbContext context)
+        public PedidoProdutoRepository(MeuDbContext context)
         {
             _context = context;
         }
 
-        [HttpPost]
-        public RetornoAcao Salvar(Produto prato)
+        [HttpPost("Salvar")]
+        public RetornoAcao Salvar(PedidoProdutoDto dto)
         {
             RetornoAcao retorno = new RetornoAcao();
+
             try
             {
-                if (prato.IdProduto != 0)
+                TimeZoneInfo timezoneBrasilia = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
+                DateTime dataBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timezoneBrasilia);
+
+                if (dto.IdProduto != null && dto.Quantidade != null && dto.IdProduto.Count == dto.Quantidade.Count)
                 {
-                    var pratoExistente = _context.Pratos
-                                                .Where(c => c.IdProduto == prato.IdProduto)
-                                                .FirstOrDefault();
+                    decimal ValorTotal = 0;
 
-                    ConverteEntity(pratoExistente, prato);
+                    Pedido pedido = new Pedido
+                    {
+                        Data = dto.Data,
+                        IdCliente = dto.IdCliente,
+                        Pago = false
+                    };
 
-                    _context.Pratos.Update(pratoExistente);
+                    _context.Pedidos.Add(pedido);
+                    _context.SaveChanges();  // Salva o pedido primeiro para garantir o IdPedido gerado
 
-                    retorno.Mensagem = "Prato atualizado com sucesso!";
+                    for (int i = 0; i < dto.IdProduto.Count; i++)
+                    {
+                        PedidoProduto pedidoProduto = new PedidoProduto
+                        {
+                            IdPedido = pedido.IdPedido,  // Atribui o Id do pedido que foi gerado
+                            IdProduto = dto.IdProduto[i].IdProduto,
+                            Quantidade = dto.Quantidade[i]
+                        };
+
+                        // Calculando o valor total
+                        ValorTotal += dto.IdProduto[i].Preco * pedidoProduto.Quantidade;
+
+                        _context.PedidoProduto.Add(pedidoProduto);
+                    }
+
+                    pedido.Valor = ValorTotal;
+                    _context.SaveChanges();  // Salvando as alterações no Pedido e PedidoProduto
+
+                    retorno.Ok = true;
+                    retorno.Mensagem = $"Pedido gerado com sucesso! Valor total: R$ ${ValorTotal.ToString("F2")}";
                 }
                 else
                 {
-                    _context.Pratos.Add(prato);
-                    retorno.Mensagem = "Prato salvo com sucesso!";
+                    retorno.Mensagem = "Nenhum produto selecionado ou quantidade inválida!";
                 }
-
-                _context.SaveChanges();
-
-                retorno.Ok = true;
             }
             catch (Exception ex)
             {
-                retorno.Mensagem = "ERRO!";
+                retorno.Mensagem = "ERRO: " + ex.Message;
             }
             return retorno;
         }
 
+
         [HttpPost("Alterar")]
-        public RetornoAcao Alterar([FromBody] Produto cliente)
+        public RetornoAcao Alterar(Produto cliente)
         {
             RetornoAcao retorno = new RetornoAcao();
             try
@@ -88,16 +111,15 @@ namespace CadastroClientes.Bll
         }
 
         [HttpGet("Listar")]
-        public List<Produto> Listar()
+        public List<PedidoProduto> Listar()
         {
-            List<Produto> listaCli = null;
             try
             {
-                listaCli = _context.Pratos.ToList();
+                List<PedidoProduto> listaCli = _context.PedidoProduto.ToList();
 
                 if (listaCli == null)
                 {
-                    throw new Exception("Nenhum prato encontrado!");
+                    throw new Exception("Nenhum item encontrado!");
                 }
                 else
                     return listaCli;
@@ -116,9 +138,9 @@ namespace CadastroClientes.Bll
 
             try
             {
-                int id = _context.Pratos.Where(c => c.IdProduto == Id).Select(x => x.IdProduto).FirstOrDefault();
+                int id = _context.Produtos.Where(c => c.IdProduto == Id).Select(x => x.IdProduto).FirstOrDefault();
 
-                if (id != 0)
+                if (id == 0)
                 {
                     retorno.Mensagem = "Produto não encontrado!";
                 }
@@ -141,6 +163,8 @@ namespace CadastroClientes.Bll
             existente.Nome = alterado.Nome;
             existente.Descricao = alterado.Descricao;
             existente.Preco = alterado.Preco;
+            existente.PrecoDescontado = alterado.PrecoDescontado;
+            existente.Quantidade = alterado.Quantidade;
 
             return existente;
         }

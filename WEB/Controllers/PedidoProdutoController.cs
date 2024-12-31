@@ -1,13 +1,4 @@
-﻿/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-//* Autor(es): 
-//* Data da última modificação: 30/04/2024
-//* Descrição: Um ASP.NET Core Web API controller. Possui métodos para lidar com requests HTTP e manipulação/gerenciamento de dados 
-//* Testes: 
-//* Anotações:
-    - Controller: determines what response to send back to a user when a user makes a browser request to the application.
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-
-using CadastroClientes.Bll;
+﻿using CadastroClientes.Bll;
 using CadastroClientes.Models;
 using CadastroClientes.Repository;
 using Microsoft.AspNetCore.Mvc;
@@ -16,22 +7,21 @@ namespace CadastroClientes.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class PratoController : ControllerBase
+    public class PedidoProdutoController : ControllerBase
     {
-        private readonly PratoRepository _repository;
+        private readonly PedidoProdutoRepository _repository;
 
-        public PratoController(PratoRepository repository)
+        public PedidoProdutoController(PedidoProdutoRepository repository)
         {
             _repository = repository;
         }
 
         [HttpPost("Salvar")]
-        public RetornoAcao Salvar(Produto prato)
+        public RetornoAcao Salvar(PedidoProdutoDto prato)
         {
-            RetornoAcao retorno = new RetornoAcao();
             try
             {
-                _repository.Salvar(prato);
+                RetornoAcao retorno = _repository.Salvar(prato);
 
                 return retorno;
             }
@@ -58,19 +48,18 @@ namespace CadastroClientes.Controllers
         }
 
         [HttpGet("Listar")]
-        public List<Produto> Listar()
+        public List<PedidoProduto> Listar()
         {
-            List<Produto> listaPrato = null;
             try
             {
-                listaPrato = _repository.Listar();
+                List<PedidoProduto> listaPedido = _repository.Listar();
 
-                if (listaPrato == null)
+                if (listaPedido == null)
                 {
-                    throw new Exception("Nenhum prato encontrado!");
+                    throw new Exception("Nenhum item encontrado!");
                 }
                 else
-                    return listaPrato;
+                    return listaPedido;
             }
             catch (Exception ex)
             {
@@ -82,7 +71,6 @@ namespace CadastroClientes.Controllers
         public RetornoAcao Deletar(int idProduto)
         {
             RetornoAcao retorno = new RetornoAcao();
-
             try
             {
                 retorno = _repository.Deletar(idProduto);

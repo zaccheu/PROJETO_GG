@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using CadastroClientes.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 [Table("Cliente")]
 public class Cliente
