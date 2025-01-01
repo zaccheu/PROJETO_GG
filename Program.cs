@@ -34,6 +34,9 @@ builder.Services.AddDbContext<MeuDbContext>(options =>
 builder.Services.AddScoped<ClienteRepository>();
 builder.Services.AddScoped<ProdutoRepository>();
 builder.Services.AddScoped<PedidoProdutoRepository>();
+builder.Services.AddScoped<PedidoRepository>();
+builder.Services.AddScoped<DadosRepository>();
+builder.Services.AddScoped<CategoriaRepository>();
 //builder.Services.AddScoped<PedidoRepository>();
 //builder.Services.AddScoped<DespesaRepository>();
 

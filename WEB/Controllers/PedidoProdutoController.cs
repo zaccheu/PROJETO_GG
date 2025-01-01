@@ -1,6 +1,6 @@
 ﻿using CadastroClientes.Bll;
+using CadastroClientes.Dto;
 using CadastroClientes.Models;
-using CadastroClientes.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CadastroClientes.Controllers
@@ -31,13 +31,12 @@ namespace CadastroClientes.Controllers
             }
         }
 
-        [HttpPost("Alterar")]
-        public RetornoAcao Alterar([FromBody] Produto prato)
+        [HttpPost("EditarPedido")]
+        public RetornoAcao EditarPedido(PedidoProdutoDto dto)
         {
-            RetornoAcao retorno = new RetornoAcao();
             try
             {
-                _repository.Alterar(prato);
+                RetornoAcao retorno = _repository.EditarPedido(dto);
 
                 return retorno;
             }

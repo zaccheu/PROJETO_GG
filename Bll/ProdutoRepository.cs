@@ -1,23 +1,9 @@
-﻿/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-//* Autor(es): 
-//* Data da última modificação: 13/05/2024
-//* Descrição: Operações CRUD para a entidade Prato
-//* Testes: 
-//* Anotações:
-    - "Produtos" ou "Produtos"?
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-
-using CadastroClientes.Controllers;
-using CadastroClientes.Models;
-using CadastroClientes.Repository;
+﻿using CadastroClientes.Dto;
+using CadastroClientes.Entity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
-using System.Diagnostics;
-using System.Reflection.Metadata;
+using System.Linq;
 
 namespace CadastroClientes.Bll
 {
@@ -96,14 +82,16 @@ namespace CadastroClientes.Bll
         {
             try
             {
-                List<Produto> listaCli = _context.Produtos.ToList();
+                List<Produto> listaProduto = _context.Produtos
+                                                     .Include(c => c.Categoria)
+                                                     .ToList();
 
-                if (listaCli == null)
+                if (listaProduto == null)
                 {
                     throw new Exception("Nenhum item encontrado!");
                 }
                 else
-                    return listaCli;
+                    return listaProduto;
             }
             catch (Exception ex)
             {
@@ -145,6 +133,7 @@ namespace CadastroClientes.Bll
             existente.Descricao = alterado.Descricao;
             existente.Preco = alterado.Preco;
             existente.PrecoDescontado = alterado.PrecoDescontado;
+            existente.Categoria = alterado.Categoria;
             existente.Quantidade = alterado.Quantidade;
 
             return existente;

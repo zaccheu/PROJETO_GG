@@ -12,7 +12,7 @@ using System.Diagnostics;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http.HttpResults;
-using CadastroClientes.Models;
+using CadastroClientes.Dto;
 
 namespace CadastroClientes.Repository
 {

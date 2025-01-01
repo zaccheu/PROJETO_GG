@@ -1,16 +1,6 @@
-﻿/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-//* Autor(es): 
-//* Data da última modificação: 30/04/2024
-//* Descrição: Um ASP.NET Core Web API controller. Possui métodos para lidar com requests HTTP e manipulação/gerenciamento de dados 
-//* Testes: 
-//* Anotações:
-    - Controller: determines what response to send back to a user when a user makes a browser request to the application.
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-
-using CadastroClientes.Models;
+﻿using CadastroClientes.Dto;
 using CadastroClientes.Repository;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace CadastroClientes.WEB.Controllers
 {

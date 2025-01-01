@@ -1,23 +1,8 @@
-﻿/*=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-//* Autor(es): 
-//* Data da última modificação: 13/05/2024
-//* Descrição: Operações CRUD para a entidade Prato
-//* Testes: 
-//* Anotações:
-    - "Produtos" ou "Produtos"?
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
-
-using CadastroClientes.Controllers;
+﻿using CadastroClientes.Dto;
 using CadastroClientes.Models;
-using CadastroClientes.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
-using System.Diagnostics;
-using System.Reflection.Metadata;
 
 namespace CadastroClientes.Bll
 {
@@ -46,7 +31,7 @@ namespace CadastroClientes.Bll
                 TimeZoneInfo timezoneBrasilia = TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time");
                 DateTime dataBrasilia = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timezoneBrasilia);
 
-                if (dto.IdProduto != null && dto.Quantidade != null && dto.IdProduto.Count == dto.Quantidade.Count)
+                if (dto.Produto != null && dto.Quantidade != null && dto.Produto.Count == dto.Quantidade.Count)
                 {
                     decimal ValorTotal = 0;
 
@@ -60,17 +45,17 @@ namespace CadastroClientes.Bll
                     _context.Pedidos.Add(pedido);
                     _context.SaveChanges();  // Salva o pedido primeiro para garantir o IdPedido gerado
 
-                    for (int i = 0; i < dto.IdProduto.Count; i++)
+                    for (int i = 0; i < dto.Produto.Count; i++)
                     {
                         PedidoProduto pedidoProduto = new PedidoProduto
                         {
                             IdPedido = pedido.IdPedido,  // Atribui o Id do pedido que foi gerado
-                            IdProduto = dto.IdProduto[i].IdProduto,
+                            IdProduto = dto.Produto[i].IdProduto,
                             Quantidade = dto.Quantidade[i]
                         };
 
                         // Calculando o valor total
-                        ValorTotal += dto.IdProduto[i].Preco * pedidoProduto.Quantidade;
+                        ValorTotal += dto.Produto[i].Preco * pedidoProduto.Quantidade;
 
                         _context.PedidoProduto.Add(pedidoProduto);
                     }
@@ -94,20 +79,82 @@ namespace CadastroClientes.Bll
         }
 
 
-        [HttpPost("Alterar")]
-        public RetornoAcao Alterar(Produto cliente)
+        [HttpPost("EditarPedido")]
+        public RetornoAcao EditarPedido(PedidoProdutoDto dto)
         {
             RetornoAcao retorno = new RetornoAcao();
+
             try
             {
-                _context.Update(cliente);
+                // Verifica se o pedido existe
+                var pedido = _context.Pedidos.FirstOrDefault(p => p.IdPedido == dto.IdPedido);
+                if (pedido == null)
+                {
+                    retorno.Mensagem = "Pedido não encontrado!";
+                    return retorno;
+                }
 
-                return retorno;
+                decimal ValorTotal = pedido.Valor; // Valor atual do pedido
+
+                // Adicionar ou atualizar itens
+                if (dto.Produto != null && dto.Quantidade != null && dto.Produto.Count == dto.Quantidade.Count)
+                {
+                    for (int i = 0; i < dto.Produto.Count; i++)
+                    {
+                        int idProduto = dto.Produto[i].IdProduto;
+                        int quantidade = dto.Quantidade[i];
+
+                        // Verifica se o item já está no pedido
+                        var pedidoProdutoExistente = _context.PedidoProduto
+                            .FirstOrDefault(pp => pp.IdPedido == pedido.IdPedido && pp.IdProduto == idProduto);
+
+                        if (pedidoProdutoExistente != null)
+                        {
+                            // Atualiza a quantidade do item existente
+                            ValorTotal -= pedidoProdutoExistente.Quantidade * dto.Produto[i].Preco;
+                            pedidoProdutoExistente.Quantidade = quantidade;
+                            ValorTotal += quantidade * dto.Produto[i].Preco;
+                        }
+                        else
+                        {
+                            // Adiciona novo item
+                            PedidoProduto novoPedidoProduto = new PedidoProduto
+                            {
+                                IdPedido = pedido.IdPedido,
+                                IdProduto = idProduto,
+                                Quantidade = quantidade
+                            };
+
+                            ValorTotal += quantidade * dto.Produto[i].Preco;
+                            _context.PedidoProduto.Add(novoPedidoProduto);
+                        }
+                    }
+                }
+
+                // Remover itens (caso dto.IdProduto não inclua todos os itens do pedido atual)
+                var itensAtuais = _context.PedidoProduto.Where(pp => pp.IdPedido == pedido.IdPedido).Include(pp => pp.Produto).ToList();
+
+                foreach (var item in itensAtuais)
+                {
+                    if (!dto.Produto.Any(p => p.IdProduto == item.IdProduto))
+                    {
+                        ValorTotal -= item.Quantidade * item.Produto.Preco; // Subtrai o valor do item removido
+                        _context.PedidoProduto.Remove(item);
+                    }
+                }
+
+                // Atualiza o valor total do pedido
+                pedido.Valor = ValorTotal;
+                _context.SaveChanges();
+
+                retorno.Ok = true;
+                retorno.Mensagem = $"Pedido atualizado com sucesso! Novo valor total: R$ {ValorTotal.ToString("F2")}";
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                retorno.Mensagem = "ERRO: " + ex.Message;
             }
+            return retorno;
         }
 
         [HttpGet("Listar")]

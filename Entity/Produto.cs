@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using CadastroClientes.Entity;
+using CadastroClientes.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 [Table("Produtos")]
 public class Produto
@@ -20,4 +22,9 @@ public class Produto
 
     [Column("Descricao")]
     public string? Descricao { get; set; }
+
+    [ForeignKey("IdCategoria")]
+    public int IdCategoria { get; set; }
+
+    public Categoria Categoria { get; set; }
 }

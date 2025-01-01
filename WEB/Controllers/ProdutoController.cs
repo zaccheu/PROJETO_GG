@@ -8,7 +8,7 @@
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=*/
 
 using CadastroClientes.Bll;
-using CadastroClientes.Models;
+using CadastroClientes.Dto;
 using CadastroClientes.Repository;
 using Microsoft.AspNetCore.Mvc;
 

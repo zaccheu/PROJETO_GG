@@ -1,4 +1,4 @@
-﻿namespace CadastroClientes.Models;
+﻿namespace CadastroClientes.Dto;
 
 public class RetornoAcao
 {

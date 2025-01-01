@@ -1,8 +1,8 @@
-﻿namespace CadastroClientes.Models;
+﻿namespace CadastroClientes.Dto;
 
 public class PedidoProdutoDto
 {
-    public List<Produto>? IdProduto { get; set; }
+    public List<Produto>? Produto { get; set; }
 
     public List<int>? Quantidade { get; set; }
 
