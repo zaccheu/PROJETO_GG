@@ -1,8 +1,8 @@
-﻿using CadastroClientes.Dto;
-using CadastroClientes.Repository;
+﻿using GG.Dto;
+using GG.Repository;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CadastroClientes.WEB.Controllers
+namespace GG.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

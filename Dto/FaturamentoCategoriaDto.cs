@@ -1,6 +1,6 @@
-﻿using CadastroClientes.Entity;
+﻿using GG.Entity;
 
-namespace CadastroClientes.Dto;
+namespace GG.Dto;
 
 public class FaturamentoCategoriaDto
 {

@@ -1,10 +1,10 @@
-﻿using CadastroClientes.Dto;
-using CadastroClientes.Models;
+﻿using GG.Dto;
+using GG.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 
-namespace CadastroClientes.Bll
+namespace GG.Bll
 {
     public class PedidoProdutoRepository
     {

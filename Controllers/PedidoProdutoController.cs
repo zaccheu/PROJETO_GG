@@ -1,9 +1,9 @@
-﻿using CadastroClientes.Bll;
-using CadastroClientes.Dto;
-using CadastroClientes.Models;
+﻿using GG.Bll;
+using GG.Dto;
+using GG.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CadastroClientes.Controllers
+namespace GG.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

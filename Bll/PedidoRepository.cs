@@ -1,8 +1,8 @@
-﻿using CadastroClientes.Dto;
-using CadastroClientes.Models;
+﻿using GG.Dto;
+using GG.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CadastroClientes.Bll;
+namespace GG.Bll;
 
 public class PedidoRepository
 {

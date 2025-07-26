@@ -1,10 +1,10 @@
-﻿using CadastroClientes.Bll;
-using CadastroClientes.Dto;
-using CadastroClientes.Entity;
-using CadastroClientes.Repository;
+﻿using GG.Bll;
+using GG.Dto;
+using GG.Entity;
+using GG.Repository;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CadastroClientes.WEB.Controllers;
+namespace GG.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

@@ -1,8 +1,8 @@
-﻿using CadastroClientes.Bll;
-using CadastroClientes.Dto;
+﻿using GG.Bll;
+using GG.Dto;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CadastroClientes.WEB.Controllers
+namespace GG.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -14,7 +14,7 @@ namespace CadastroClientes.WEB.Controllers
         {
             _repository = repository;
         }
-        
+
         [HttpGet("PagarPedido")]
         public RetornoAcao PagarPedido(int IdPedido)
         {

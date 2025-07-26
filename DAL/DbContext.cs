@@ -1,6 +1,6 @@
-﻿using CadastroClientes.DAL;
-using CadastroClientes.Entity;
-using CadastroClientes.Models;
+﻿using GG.DAL;
+using GG.Entity;
+using GG.Models;
 using Microsoft.EntityFrameworkCore;
 
 public class MeuDbContext : DbContext

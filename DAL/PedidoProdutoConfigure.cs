@@ -1,8 +1,8 @@
-﻿using CadastroClientes.Models;
+﻿using GG.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CadastroClientes.DAL
+namespace GG.DAL
 {
     public class PedidoProdutoConfigure : IEntityTypeConfiguration<PedidoProduto>
     {

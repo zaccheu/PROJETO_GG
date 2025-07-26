@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CadastroClientes.DAL;
+namespace GG.DAL;
 
 public class ProdutoConfigure : IEntityTypeConfiguration<Produto>
 {

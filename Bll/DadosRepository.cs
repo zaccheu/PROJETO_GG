@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http.HttpResults;
-using CadastroClientes.Dto;
+using GG.Dto;
 
-namespace CadastroClientes.Repository;
+namespace GG.Repository;
 
 //responsável por salvar as coisas no banco de dados
 public class DadosRepository
@@ -52,17 +52,17 @@ public class DadosRepository
         try
         {
             List<FaturamentoCategoriaDto> faturamentoPorCategoria = _context.PedidoProduto
-            .Where(x => x.Pedido.Data.Month == dto.Data.Month)
-            .Include(pp => pp.Produto) // Inclui os dados dos produtos
-            .ThenInclude(p => p.Categoria) // Inclui os dados das categorias
-            .GroupBy(pp => pp.Produto.Categoria) // Agrupa por categoria
-            .Select(grupo => new FaturamentoCategoriaDto
-            {
-                Categoria = grupo.Key,
-                Faturamento = grupo.Sum(pp => pp.Produto.Preco * pp.Quantidade) // Soma o faturamento
-            })
-            .OrderByDescending(res => res.Faturamento) // Ordena por faturamento
-            .ToList();
+                                                                    .Where(x => x.Pedido.Data.Month == dto.Data.Month)
+                                                                    .Include(pp => pp.Produto) // Inclui os dados dos produtos
+                                                                    .ThenInclude(p => p.Categoria) // Inclui os dados das categorias
+                                                                    .GroupBy(pp => pp.Produto.Categoria) // Agrupa por categoria
+                                                                    .Select(grupo => new FaturamentoCategoriaDto
+                                                                    {
+                                                                        Categoria = grupo.Key,
+                                                                        Faturamento = grupo.Sum(pp => pp.Produto.Preco * pp.Quantidade) // Soma o faturamento
+                                                                    })
+                                                                    .OrderByDescending(res => res.Faturamento) // Ordena por faturamento
+                                                                    .ToList();
 
             if (faturamentoPorCategoria.Count > 0)
             {

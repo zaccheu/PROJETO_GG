@@ -1,11 +1,11 @@
-﻿using CadastroClientes.Dto;
-using CadastroClientes.Entity;
+﻿using GG.Dto;
+using GG.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Linq;
 
-namespace CadastroClientes.Bll
+namespace GG.Bll
 {
     public class ProdutoRepository
     {

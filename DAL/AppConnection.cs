@@ -1,4 +1,4 @@
-﻿namespace CadastroClientes.DAL
+﻿namespace GG.DAL
 {
     public class AppConnection
     {

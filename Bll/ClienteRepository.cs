@@ -12,9 +12,9 @@ using System.Diagnostics;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http.HttpResults;
-using CadastroClientes.Dto;
+using GG.Dto;
 
-namespace CadastroClientes.Repository
+namespace GG.Repository
 {
     //responsável por salvar as coisas no banco de dados
     public class ClienteRepository

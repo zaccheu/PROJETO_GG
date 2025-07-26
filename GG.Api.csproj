@@ -7,20 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Entity\Pedidos.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="SistemaCorporativo.html" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.5.1" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GG.Aplication\GG.Application.csproj" />
+    <ProjectReference Include="..\GG.Communication\GG.Communication.csproj" />
+    <ProjectReference Include="..\GG.Exception\GG.Exception.csproj" />
+    <ProjectReference Include="..\GG.Infrastructure\GG.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

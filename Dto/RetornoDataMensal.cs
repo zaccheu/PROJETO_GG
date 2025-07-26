@@ -1,4 +1,4 @@
-﻿namespace CadastroClientes.Dto;
+﻿namespace GG.Dto;
 
 public class RetornoDataMensal
 {
