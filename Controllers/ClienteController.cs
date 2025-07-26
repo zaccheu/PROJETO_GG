@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GG.Api.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class ClienteController : ControllerBase
     {
         private readonly ClienteRepository _repository;
@@ -80,22 +80,6 @@ namespace GG.Api.Controllers
                 retorno.Mensagem = ex.Message;
             }
             return retorno;
-        }
-
-        [HttpGet("GetClient")]
-        public Cliente GetClient(string telefone)
-        {
-            Cliente cliente = null;
-            try
-            {
-                cliente = _repository.GetClient(telefone);
-
-                return cliente;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
         }
     }
 }
