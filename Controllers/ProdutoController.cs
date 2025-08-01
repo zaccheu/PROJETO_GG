@@ -1,5 +1,4 @@
-﻿using GG.Application.UseCases.Produto;
-using GG.Bll;
+﻿using GG.Application.UseCases.Produtos;
 using GG.Communication.Responses;
 using GG.Dto;
 using Microsoft.AspNetCore.Mvc;
@@ -10,13 +9,6 @@ namespace GG.Api.Controllers
     [ApiController]
     public class ProdutoController : ControllerBase
     {
-        private readonly ProdutoRepository _repository;
-
-        public ProdutoController(ProdutoRepository repository)
-        {
-            _repository = repository;
-        }
-
         [HttpPost("Salvar")]
         [ProducesResponseType(typeof(ResponseProdutosRegistradosJson), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]

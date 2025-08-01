@@ -1,5 +1,4 @@
 ﻿using GG.Communication.Responses;
-using GG.Exception;
 using GG.Exception.ExceptionsBase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -23,7 +22,7 @@ public class ExceptionFilter : IExceptionFilter
     private void HandleProjectException(ExceptionContext context)
     {
         var ggException = (GGException)context.Exception;
-        var errorResponse = new ResponseErrorDto(ggException?.GetErros());
+        var errorResponse = new ResponseErrorJson(ggException!.GetErros());
 
         context.HttpContext.Response.StatusCode = ggException.StatusCode;
         context.Result = new BadRequestObjectResult(errorResponse);
@@ -31,7 +30,7 @@ public class ExceptionFilter : IExceptionFilter
 
     private void ThrowUnkownError(ExceptionContext context)
     {
-        var errorResponse = new ResponseErrorJson(ResourceErrorMessages.UNKNOWN_ERROR);
+        var errorResponse = new ResponseErrorJson("Erro desconhecido.");
 
         context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
         context.Result = new ObjectResult(errorResponse);
