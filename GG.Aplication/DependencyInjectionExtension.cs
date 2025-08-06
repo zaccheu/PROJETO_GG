@@ -1,5 +1,4 @@
-﻿using GG.Aplication.UseCases.Produtos;
-using GG.Application.AutoMapper;
+﻿using GG.Application.AutoMapper;
 using GG.Application.UseCases.Produtos;
 using Microsoft.Extensions.DependencyInjection;
 

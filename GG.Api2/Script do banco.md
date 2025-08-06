@@ -1,0 +1,345 @@
+USE [master]
+GO
+/****** Object:  Database [GG]    Script Date: 12/23/2024 11:24:26 AM ******/
+CREATE DATABASE [GG]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'GG', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\GG.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'GG_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\DATA\GG_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [GG] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [GG].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [GG] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [GG] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [GG] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [GG] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [GG] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [GG] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [GG] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [GG] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [GG] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [GG] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [GG] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [GG] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [GG] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [GG] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [GG] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [GG] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [GG] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [GG] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [GG] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [GG] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [GG] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [GG] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [GG] SET RECOVERY FULL 
+GO
+ALTER DATABASE [GG] SET  MULTI_USER 
+GO
+ALTER DATABASE [GG] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [GG] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [GG] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [GG] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [GG] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [GG] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'GG', N'ON'
+GO
+ALTER DATABASE [GG] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [GG] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [GG]
+GO
+USE [GG]
+GO
+/****** Object:  Sequence [dbo].[SequenceCliente]    Script Date: 12/23/2024 11:24:26 AM ******/
+CREATE SEQUENCE [dbo].[SequenceCliente] 
+ AS [bigint]
+ START WITH 1
+ INCREMENT BY 1
+ MINVALUE -9223372036854775808
+ MAXVALUE 9223372036854775807
+ CACHE 
+GO
+USE [GG]
+GO
+/****** Object:  Sequence [dbo].[SequenceProdutos]    Script Date: 12/23/2024 11:24:26 AM ******/
+CREATE SEQUENCE [dbo].[SequenceProdutos] 
+ AS [bigint]
+ START WITH 1
+ INCREMENT BY 1
+ MINVALUE -9223372036854775808
+ MAXVALUE 9223372036854775807
+ CACHE 
+GO
+/****** Object:  Table [dbo].[Cliente]    Script Date: 12/23/2024 11:24:26 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Cliente](
+	[IdCliente] [int] NOT NULL,
+	[Nome] [nvarchar](255) NOT NULL,
+	[Telefone] [nvarchar](11) NULL,
+	[Instagram] [nvarchar](50) NULL,
+	[VIP] [bit] NOT NULL,
+	[SEXO] [varchar](1) NULL,
+	[Ativo] [bit] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdCliente] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Despesas]    Script Date: 12/23/2024 11:24:26 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Despesas](
+	[IdDespesa] [int] IDENTITY(1,1) NOT NULL,
+	[Valor] [decimal](10, 2) NOT NULL,
+	[Validade] [date] NOT NULL,
+	[TipoDespesa] [nvarchar](255) NULL,
+	[Descricao] [nvarchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdDespesa] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Pratos]    Script Date: 12/23/2024 11:24:26 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Pratos](
+	[IdProduto] [int] NOT NULL,
+	[Nome] [nvarchar](255) NOT NULL,
+	[Preco] [decimal](10, 2) NOT NULL,
+	[Descricao] [nvarchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdProduto] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Produtos]    Script Date: 12/23/2024 11:24:26 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Produtos](
+	[IdProduto] [int] IDENTITY(1,1) NOT NULL,
+	[Nome] [nvarchar](255) NOT NULL,
+	[Preco] [decimal](10, 2) NOT NULL,
+	[Descricao] [nvarchar](max) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdProduto] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Cliente] ADD  CONSTRAINT [seq_Cliente_IdCliente]  DEFAULT (NEXT VALUE FOR [dbo].[SequenceCliente]) FOR [IdCliente]
+GO
+ALTER TABLE [dbo].[Cliente] ADD  DEFAULT ((0)) FOR [VIP]
+GO
+ALTER TABLE [dbo].[Cliente] ADD  DEFAULT ((1)) FOR [Ativo]
+GO
+ALTER TABLE [dbo].[Pratos] ADD  CONSTRAINT [seq_Produtos_IdProduto]  DEFAULT (NEXT VALUE FOR [dbo].[SequenceProdutos]) FOR [IdProduto]
+GO
+/****** Object:  StoredProcedure [dbo].[SP_DELETE_CLIENT]    Script Date: 12/23/2024 11:24:26 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_DELETE_CLIENT] (@Telefone varchar (11))
+
+AS
+
+BEGIN
+
+	DELETE from Cliente WHERE Telefone = @Telefone
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SP_DELETE_ESTOQUE]    Script Date: 12/23/2024 11:24:26 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[SP_DELETE_ESTOQUE]
+    @IdProduto INT
+AS
+BEGIN
+    DELETE FROM Estoque
+    WHERE IdProduto = @IdProduto
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SP_GET_CLIENT]    Script Date: 12/23/2024 11:24:26 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_GET_CLIENT] (@Telefone varchar (11))
+
+AS
+
+BEGIN
+
+	SELECT * FROM CLIENTE WHERE TELEFONE = @TELEFONE
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SP_INSERT_CLIENT]    Script Date: 12/23/2024 11:24:26 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[SP_INSERT_CLIENT](
+    @Nome VARCHAR(50),
+	@Telefone VARCHAR(11),
+	@Instagram VARCHAR (30),
+    @Sexo VARCHAR(1),
+	@VIP BIT
+)
+AS
+BEGIN
+-- Atualizando várias colunas na tabela Clientes
+INSERT INTO Cliente (Nome, Telefone, Instagram, Sexo, VIP)
+VALUES(@Nome, @Telefone, @Instagram, @sexo, @VIP)
+    -- Verificar se a operação afetou alguma linha
+    IF @@ROWCOUNT = 0
+    BEGIN
+        -- Lança um erro se nenhuma linha foi atualizada
+        RAISERROR ('Nenhum cliente atualizado com o ID fornecido.', 16, 1);
+	END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SP_INSERT_ESTOQUE]    Script Date: 12/23/2024 11:24:26 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[SP_INSERT_ESTOQUE]
+    @IdProduto INT,
+    @Quantidade INT
+AS
+BEGIN
+    INSERT INTO Estoque (IdProduto, Quantidade)
+    VALUES (@IdProduto, @Quantidade)
+
+    IF @@ROWCOUNT = 0
+    BEGIN
+        RAISERROR ('Nenhum registro inserido na tabela Estoque.', 16, 1);
+    END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SP_LIST_CLIENT]    Script Date: 12/23/2024 11:24:26 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SP_LIST_CLIENT] 
+
+AS
+
+BEGIN
+
+	SELECT * FROM CLIENTE
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SP_UPDATE_CLIENT]    Script Date: 12/23/2024 11:24:26 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE procedure [dbo].[SP_UPDATE_CLIENT](
+    @Nome VARCHAR(50),
+	@Telefone VARCHAR(11),
+	@Instagram VARCHAR (30),
+    @Sexo VARCHAR(1),
+	@VIP BIT
+)
+AS
+BEGIN
+    -- Atualizando várias colunas na tabela Clientes
+    UPDATE Cliente
+    SET 
+        Nome = @Nome,
+		Telefone = @Telefone,
+		Instagram = @Instagram,
+		Sexo = @sexo,
+		VIP = @VIP
+    WHERE telefone = @Telefone;
+
+    -- Verificar se a operação afetou alguma linha
+    IF @@ROWCOUNT = 0
+    BEGIN
+        -- Lança um erro se nenhuma linha foi atualizada
+        RAISERROR ('Nenhum cliente atualizado com o ID fornecido.', 16, 1);
+    END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SP_UPDATE_ESTOQUE]    Script Date: 12/23/2024 11:24:26 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[SP_UPDATE_ESTOQUE]
+    @IdProduto INT,
+    @Quantidade INT
+AS
+BEGIN
+    UPDATE Estoque
+    SET Quantidade = @Quantidade
+    WHERE IdProduto = @IdProduto
+
+    IF @@ROWCOUNT = 0
+    BEGIN
+        RAISERROR ('Nenhum registro atualizado na tabela Estoque.', 16, 1);
+    END
+END
+GO
+USE [master]
+GO
+ALTER DATABASE [GG] SET  READ_WRITE 
+GO

@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "LzJhNepodv0/Pgf7VrM33boC+/gx26atwqnDEZXSRjc=",
+  "Hash": "9hV8CC1OhDeUZL2Fh+Zjm4j9MuxfnAkOpQhqzrQS9HU=",
   "Source": "Angular.Server",
   "BasePath": "_content/Angular.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\Angular\\angular.client\\angular.client.esproj",
+      "Identity": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\angular.client\\angular.client.esproj",
       "Version": 2,
       "Source": "angular.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",

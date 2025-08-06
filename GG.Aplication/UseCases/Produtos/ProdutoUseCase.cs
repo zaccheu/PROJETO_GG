@@ -3,12 +3,12 @@ using GG.Application.UseCases.Produtos;
 using GG.Communication.Responses;
 using GG.Domain.Entity;
 using GG.Domain.Repositories;
-using GG.Domain.Repositories.Pedidos;
+using GG.Domain.Repositories.Produtos;
 using GG.Dto;
 using GG.Exception.ExceptionsBase;
 using System.Data;
 
-namespace GG.Aplication.UseCases.Produtos
+namespace GG.Application.UseCases.Produtos
 
 {
     public class ProdutoUseCase : IProdutoUseCase

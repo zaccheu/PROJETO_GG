@@ -1,6 +1,6 @@
 ﻿using GG.Domain.Entity;
 
-namespace GG.Domain.Repositories.Pedidos;
+namespace GG.Domain.Repositories.Produtos;
 
 public interface IProdutosRepository
 {

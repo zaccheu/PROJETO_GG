@@ -1,0 +1,354 @@
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button"
+                        class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#navbar"
+                        aria-expanded="false"
+                        aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Sistema de Cadastro Unico</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="vendas.html">Vendas</a>
+                    </li>
+                    <li>
+                        <a href="Estoque.html">Estoque</a>
+                    </li>
+                    <li>
+                        <a href="Estoque.html">Contatos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <!-- Menu Lateral -->
+        <div class="col-md-3 menu-lateral" id="menu-lateral"></div>
+    </div>
+    <div class="container">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">
+                            CADASTRO DE CLIENTE
+                        </h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <form action="#" class="form-horizontal">
+                            <fieldset>
+                                <legend>Dados Pessoais</legend>
+
+                                <div class="form-group">
+                                    <label for="Documento"
+                                           class="col-sm-2 control-label">Nome</label>
+                                    <div class="col-sm-4">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="Nome" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="nome" class="col-sm-2 control-label">Telefone</label>
+                                    <div class="col-sm-4">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="Telefone" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="nome" class="col-sm-2 control-label">Instagram</label>
+                                    <div class="col-sm-4">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="Instagram" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Sexo</label>
+                                    <div class="col-sm-4">
+                                        <div class="radio-inline">
+                                            <label>
+                                                <input type="radio"
+                                                       name="sexo"
+                                                       id="sexoFeminino"
+                                                       value="F" />
+                                                Feminino
+                                            </label>
+                                        </div>
+
+                                        <div class="radio-inline">
+                                            <label>
+                                                <input type="radio"
+                                                       name="sexo"
+                                                       id="sexoMasculino"
+                                                       value="M" />
+                                                Masculino
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">VIP</label>
+                                    <div class="col-sm-4">
+                                        <label class="radio-inline">
+                                            <input type="radio"
+                                                   name="VIP"
+                                                   value="True" />
+                                            Sim
+                                        </label>
+
+                                        <label class="radio-inline">
+                                            <input type="radio"
+                                                   name="VIP"
+                                                   value="False" />
+                                            Não
+                                        </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <button type="button"
+                                    class="btn btn-primary"
+                                    onclick="javascript:SalvarCadastro();">
+                                <span class="glyphicon glyphicon-floppy-disk"
+                                      aria-hidden="true"></span>
+                                Gravar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">CLIENTES CADASTRADOS</h3>
+            </div>
+
+            <div class="panel-body">
+                <a data-toggle="modal"
+                   data-target="#myModal"
+                   class="btn btn-primary">
+                    <span class="glyphicon glyphicon-plus"
+                          aria-hidden="true"></span>
+                    Novo
+                </a>
+                <div class="table-responsive">
+                    <table id="ListaCadastro"
+                           class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>NOME</th>
+                                <th>TELEFONE</th>
+                                <th>INSTAGRAM</th>
+                                <th>SEXO</th>
+                                <th>VIP</th>
+                                <th>AÇÕES</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Script/Main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        ListarClientes();
+
+        /*function ValidarCPF(cpf) {
+            // Removendo pontos e traços usando expressão regular
+            cpf = cpf.replace(/[.-]/g, '');
+
+            if (cpf.length !== 11) {
+                alert('CPF inválido. Deve conter 11 dígitos.');
+                return false;
+            }
+
+            let sum = 0;
+            let remainder;
+
+            // Primeiro dígito verificador
+            for (let i = 1; i <= 9; i++) {
+                sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+            }
+            remainder = (sum * 10) % 11;
+
+            if ((remainder === 10) || (remainder === 11)) remainder = 0;
+            if (remainder !== parseInt(cpf.substring(9, 10))) {
+                alert('CPF inválido.');
+                return false;
+            }
+
+            sum = 0;
+            // Segundo dígito verificador
+            for (let i = 1; i <= 10; i++) {
+                sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+            }
+            remainder = (sum * 10) % 11;
+
+            if ((remainder === 10) || (remainder === 11)) remainder = 0;
+            if (remainder !== parseInt(cpf.substring(10, 11))) {
+                alert('CPF inválido.');
+                return false;
+            }
+            return true;
+        }*/
+
+        function SalvarCadastro() {
+            var Cliente = {
+                nome: $("#Nome").val(),
+                telefone: $("#Telefone").val(),
+                instagram: $("#Instagram").val(),
+                sexo: $('input[name="sexo"]:checked').val(),
+                vip: $('input[name="VIP"]:checked').val() == "True"
+            };
+            //console.log(Cliente);
+
+            if (Cliente.nome == "") {
+                alert("O campo nome é obrigatório");
+                $("#Nome").css("background-color", "red");
+                return; // Para a execução
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "https://localhost:44344/api/Clientes/Salvar",
+                    data: JSON.stringify(Cliente),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (msg) {
+                        location.reload();
+                    },
+                    error: function (msg) {
+                        alert('error do salvar');
+                    },
+                });
+                AdicionarLinhaTabela(
+                    Cliente.nome,
+                    Cliente.telefone,
+                    Cliente.instagram,
+                    Cliente.sexo,
+                    Cliente.vip
+                );
+                $("#myModal").modal().hide();
+            }
+        }
+
+        function AdicionarLinhaTabela(Nome, Telefone, Instagram, Sexo, VIP) {
+            var linhaNova = '<tr id="Linha' + Telefone + '"><td>';
+            linhaNova = linhaNova + Nome + "</td><td>" + Telefone +
+                "</td><td>" + Instagram + "</td><td>" +
+                Sexo + "</td><td>" + VIP +
+                '</td><td><a href="#" onclick="javascript:GetClient(' +
+                Telefone + ');"  class="btn btn-info"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</a><a href="#" onclick="confirmarExclusao(' +
+                Telefone + ', \'' + Nome + '\');" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Excluir</a></td></tr>';
+
+            //alert(linhaNova);
+            $("#ListaCadastro").prepend(linhaNova); //prepend joga o novo registro no começo, o append é no final
+            //a linha de cima ta inserindo um registro html através de uma função JS
+            $("#myModal").modal().hide();
+        }
+
+        function LimparCamposForm() {
+            $("#nome").val("");
+            $("#sexo").val("");
+            $("#telefone").val("");
+            $("#sexo").val("");
+            $("#VIP").val("");
+        }
+
+        function RemoveLinha(Telefone) {
+            $.ajax({
+                type: "DELETE",
+                url: "https://localhost:44344/api/Clientes/Deletar?Telefone=" + Telefone,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (OBJ) {
+                    alert("Exclusão feita.");
+                },
+                error: function (OBJ) {
+                    alert('error do remove');
+                }
+            });
+            $('#Linha' + Telefone).remove();
+        }
+
+        function GetClient(Telefone) {
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:44344/api/Clientes/GetClient?telefone=" + Telefone,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (OBJ) {
+                    $("#myModal").modal().show();
+                    $("#nome").val(OBJ.nome);
+                    $("#telefone").val(OBJ.telefone);
+                    $("#instagram").val(OBJ.instagram);
+                    $('input[name="sexo"]:checked').val(OBJ.sexo);
+                    $('input[name="VIP"]:checked').val() == "True";
+                    $("#telefone").data("editing", true); // Define um data attribute para indicar edição
+                },
+                error: function (OBJ) {
+                    alert('error do editar');
+                }
+            });
+        }
+        function confirmarExclusao(Telefone, Nome) {
+            // Solicita confirmação do usuário
+            if (confirm("Tem certeza que deseja excluir " + Nome + "?")) {
+                // Se o usuário confirmar, executa a função de exclusão
+                RemoveLinha(Telefone);
+            } else {
+                // Se o usuário cancelar, não faz nada
+                alert("Exclusão cancelada.");
+            }
+        }
+
+        function ListarClientes() {
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:44344/api/Clientes/Listar",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (OBJ) {
+                    for (var i = 0; i < OBJ.length; i++) {
+                        AdicionarLinhaTabela(OBJ[i].nome, OBJ[i].telefone, OBJ[i].instagram, OBJ[i].sexo, OBJ[i].vip);
+                    }
+                },
+                error: function (OBJ) {
+                    alert('error do listar');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

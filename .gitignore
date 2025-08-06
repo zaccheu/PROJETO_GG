@@ -4,6 +4,9 @@
 
 /.vs/GG/v17
 /.vs/GG/FileContentIndex
+!GG.Api/
+!src/
+!tests/
 /GG.Aplication/obj/Debug/net8.0/GG.Application.csproj.AssemblyReference.cache
 /GG.Aplication/obj/Debug/net8.0/GG.Application.csproj.FileListAbsolute.txt
 /GG.Aplication/obj/Debug/net8.0/GG.Application.pdb

@@ -1,7 +1,9 @@
 ﻿using GG.Domain.Repositories;
 using GG.Domain.Repositories.Pedidos;
+using GG.Domain.Repositories.Produtos;
 using GG.Infrastructure.DataAccess;
 using GG.Infrastructure.DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,12 +12,22 @@ public static class DependencyInjectionExtension
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        AddDbContext(services, configuration);
         AddRepositories(services);
     }
 
     private static void AddRepositories(IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IProdutosRepository, ProdutosRepository>();
         services.AddScoped<IPedidosRepository, PedidosRepository>();
+    }
+
+    private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
+    {
+        var connectionString = configuration.GetConnectionString("MeuDbContext");
+
+        services.AddDbContext<GGDbContext>(config =>
+            config.UseSqlServer(connectionString));
     }
 }

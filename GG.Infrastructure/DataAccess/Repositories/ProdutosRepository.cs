@@ -1,5 +1,5 @@
 ﻿using GG.Domain.Entity;
-using GG.Domain.Repositories.Pedidos;
+using GG.Domain.Repositories.Produtos;
 using Microsoft.EntityFrameworkCore;
 
 namespace GG.Infrastructure.DataAccess.Repositories;
