@@ -1,0 +1,11 @@
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Exception\obj\Debug\net8.0\GG.Exception.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Exception\obj\Debug\net8.0\GG.Exception.AssemblyInfoInputs.cache
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Exception\obj\Debug\net8.0\GG.Exception.AssemblyInfo.cs
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Exception\obj\Debug\net8.0\GG.Exception.csproj.CoreCompileInputs.cache
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Exception\bin\Debug\net8.0\GG.Exception.deps.json
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Exception\bin\Debug\net8.0\GG.Exception.dll
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Exception\bin\Debug\net8.0\GG.Exception.pdb
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Exception\obj\Debug\net8.0\GG.Exception.dll
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Exception\obj\Debug\net8.0\refint\GG.Exception.dll
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Exception\obj\Debug\net8.0\GG.Exception.pdb
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Exception\obj\Debug\net8.0\ref\GG.Exception.dll

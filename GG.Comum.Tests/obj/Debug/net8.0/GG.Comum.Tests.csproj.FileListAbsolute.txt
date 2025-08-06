@@ -1,0 +1,15 @@
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\bin\Debug\net8.0\GG.Comum.Tests.deps.json
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\bin\Debug\net8.0\GG.Comum.Tests.dll
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\bin\Debug\net8.0\GG.Comum.Tests.pdb
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\bin\Debug\net8.0\GG.Communication.dll
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\bin\Debug\net8.0\GG.Communication.pdb
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\obj\Debug\net8.0\GG.Comum.Tests.csproj.AssemblyReference.cache
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\obj\Debug\net8.0\GG.Comum.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\obj\Debug\net8.0\GG.Comum.Tests.AssemblyInfoInputs.cache
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\obj\Debug\net8.0\GG.Comum.Tests.AssemblyInfo.cs
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\obj\Debug\net8.0\GG.Comum.Tests.csproj.CoreCompileInputs.cache
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\obj\Debug\net8.0\GG.Comum.2EA36004.Up2Date
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\obj\Debug\net8.0\GG.Comum.Tests.dll
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\obj\Debug\net8.0\refint\GG.Comum.Tests.dll
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\obj\Debug\net8.0\GG.Comum.Tests.pdb
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Comum.Tests\obj\Debug\net8.0\ref\GG.Comum.Tests.dll

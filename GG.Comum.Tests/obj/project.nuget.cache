@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "s1SU2gmoZvE=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\GG.Comum.Tests\\GG.Comum.Tests.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Guzac\\.nuget\\packages\\bogus\\35.5.0\\bogus.35.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

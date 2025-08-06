@@ -1,0 +1,11 @@
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Domain\obj\Debug\net8.0\GG.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Domain\obj\Debug\net8.0\GG.Domain.AssemblyInfoInputs.cache
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Domain\obj\Debug\net8.0\GG.Domain.AssemblyInfo.cs
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Domain\obj\Debug\net8.0\GG.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Domain\bin\Debug\net8.0\GG.Domain.deps.json
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Domain\bin\Debug\net8.0\GG.Domain.dll
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Domain\bin\Debug\net8.0\GG.Domain.pdb
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Domain\obj\Debug\net8.0\GG.Domain.dll
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Domain\obj\Debug\net8.0\refint\GG.Domain.dll
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Domain\obj\Debug\net8.0\GG.Domain.pdb
+C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Domain\obj\Debug\net8.0\ref\GG.Domain.dll
