@@ -6,7 +6,6 @@
 /.vs/GG/FileContentIndex
 /GG.Aplication/obj/Debug/net8.0/GG.Application.csproj.AssemblyReference.cache
 /GG.Aplication/obj/Debug/net8.0/GG.Application.csproj.FileListAbsolute.txt
-/GG.Aplication/obj/Debug/net8.0/GG.Application.dll
 /GG.Aplication/obj/Debug/net8.0/GG.Application.pdb
 /GG.Aplication/obj/Debug/net8.0/GG.Application.sourcelink.json
 /GG.Aplication/obj/GG.Application.csproj.nuget.dgspec.json
@@ -17,7 +16,6 @@
 /GG.Aplication/obj/Debug/net8.0/GG.Application.AssemblyInfo.cs
 /GG.Aplication/obj/Debug/net8.0/GG.Application.AssemblyInfoInputs.cache
 /GG.Aplication/obj/Debug/net8.0/GG.Application.assets.cache
-/GG.Aplication/obj/Debug/net8.0/refint/GG.Application.dll
 /GG.Aplication/bin/Debug/net8.0/GG.Application.dll
 /GG.Aplication/bin/Debug/net8.0/GG.Application.pdb
 /GG.Aplication/bin/Debug/net8.0/GG.Communication.dll
