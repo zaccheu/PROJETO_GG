@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:4200",
 "RedirectUrl": "",
 "LaunchCommand": "npm start",
-"WorkingDirectory": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\Angular\\Angular.Server\\..\\angular.client",
+"WorkingDirectory": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\Angular.Server\\..\\angular.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

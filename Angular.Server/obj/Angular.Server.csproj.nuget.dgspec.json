@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\Angular\\Angular.Server\\Angular.Server.csproj": {}
+    "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\Angular.Server\\Angular.Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\Angular\\Angular.Server\\Angular.Server.csproj": {
+    "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\Angular.Server\\Angular.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\Angular\\Angular.Server\\Angular.Server.csproj",
+        "projectUniqueName": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\Angular.Server\\Angular.Server.csproj",
         "projectName": "Angular.Server",
-        "projectPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\Angular\\Angular.Server\\Angular.Server.csproj",
+        "projectPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\Angular.Server\\Angular.Server.csproj",
         "packagesPath": "C:\\Users\\Guzac\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\Angular\\Angular.Server\\obj\\",
+        "outputPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\Angular.Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

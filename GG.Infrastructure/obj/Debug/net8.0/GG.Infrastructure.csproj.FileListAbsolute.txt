@@ -1,5 +1,0 @@
-C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Infrastructure\obj\Debug\net8.0\GG.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Infrastructure\obj\Debug\net8.0\GG.Infrastructure.AssemblyInfoInputs.cache
-C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Infrastructure\obj\Debug\net8.0\GG.Infrastructure.AssemblyInfo.cs
-C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Infrastructure\obj\Debug\net8.0\GG.Infrastructure.csproj.CoreCompileInputs.cache
-C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\GG.Infrastructure\obj\Debug\net8.0\GG.Infrastructure.csproj.AssemblyReference.cache
