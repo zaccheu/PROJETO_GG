@@ -3,6 +3,7 @@
 ################################################################################
 
 /.vs/GG/v17
+/.vs
 /.vs/GG/FileContentIndex
 !GG.Api/
 !src/
@@ -121,3 +122,28 @@
 /Validator.Tests/obj/Validator.Tests.csproj.nuget.dgspec.json
 /Validator.Tests/obj/Validator.Tests.csproj.nuget.g.props
 /Validator.Tests/obj/Validator.Tests.csproj.nuget.g.targets
+.vs/GG/DesignTimeBuild/.dtbcache.v2
+.vs/GG/DesignTimeBuild/.dtbcache.v2
+.vs/ProjectEvaluation/gg.metadata.v8.bin
+.vs/ProjectEvaluation/gg.projects.v8.bin
+.vs/ProjectEvaluation/gg.strings.v8.bin
+angular.client/obj/Debug/angular.client.esproj.FileListAbsolute.txt
+Angular.Server/bin/Debug/net8.0/Angular.Server.deps.json
+Angular.Server/bin/Debug/net8.0/Angular.Server.dll
+Angular.Server/bin/Debug/net8.0/Angular.Server.exe
+Angular.Server/bin/Debug/net8.0/Angular.Server.pdb
+Angular.Server/bin/Debug/net8.0/Microsoft.AspNetCore.SpaProxy.dll
+Angular.Server/bin/Debug/net8.0/spa.proxy.json
+.vs/GG/DesignTimeBuild/.dtbcache.v2
+.vs/ProjectEvaluation/gg.metadata.v8.bin
+.vs/ProjectEvaluation/gg.projects.v8.bin
+.vs/ProjectEvaluation/gg.strings.v8.bin
+angular.client/obj/Debug/angular.client.esproj.FileListAbsolute.txt
+Angular.Server/bin/Debug/net8.0/Angular.Server.deps.json
+Angular.Server/bin/Debug/net8.0/Angular.Server.dll
+Angular.Server/bin/Debug/net8.0/Angular.Server.exe
+Angular.Server/bin/Debug/net8.0/Angular.Server.pdb
+Angular.Server/bin/Debug/net8.0/Microsoft.AspNetCore.SpaProxy.dll
+Angular.Server/bin/Debug/net8.0/spa.proxy.json
+.vs/GG/DesignTimeBuild/.dtbcache.v2
+/.vs
