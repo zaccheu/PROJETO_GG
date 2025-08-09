@@ -147,3 +147,7 @@ Angular.Server/bin/Debug/net8.0/Microsoft.AspNetCore.SpaProxy.dll
 Angular.Server/bin/Debug/net8.0/spa.proxy.json
 .vs/GG/DesignTimeBuild/.dtbcache.v2
 /.vs
+/.vs/GG/DesignTimeBuild/.dtbcache.v2
+/.vs/ProjectEvaluation/gg.metadata.v8.bin
+/.vs/ProjectEvaluation/gg.projects.v8.bin
+/.vs/ProjectEvaluation/gg.strings.v8.bin
