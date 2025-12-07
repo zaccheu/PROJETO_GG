@@ -25,6 +25,8 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GG.Application", "GG.Application\GG.Application.csproj", "{B30569C6-4191-40DB-8620-E3D7E7052485}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "front-end", "front-end", "{3D704EFE-FE4B-4F6A-B914-D0ADD4DD37DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

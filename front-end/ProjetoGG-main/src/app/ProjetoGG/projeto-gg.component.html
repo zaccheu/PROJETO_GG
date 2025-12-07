@@ -1,0 +1,19 @@
+<mat-toolbar class="mat-elevation-z3">
+ <button mat-icon-button (click)="collapsed.set(!collapsed())">
+    <mat-icon style="color: white">menu</mat-icon>
+ </button>
+ <div class="mat-elevation-z1">
+    <div style="font-size: 17px;">Nome</div>
+    <button mat-icon-button>
+        <mat-icon style="color: white;">logout</mat-icon>
+    </button>
+ </div>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav opened mode="side" [ngClass]="{ 'collapsed': collapsed(), 'expanded': !collapsed() }" [style.width]="sidenavWidth()">
+        <app-menu [collapsed]="collapsed()"></app-menu>
+    </mat-sidenav>
+    <mat-sidenav-content class="content" [ngClass]="{ 'collapsed-content': collapsed(), 'expanded-content': !collapsed() }" [style.margin-left]="sidenavWidth()">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
