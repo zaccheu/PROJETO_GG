@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GG.Aplication\GG.Application.csproj" />
     <ProjectReference Include="..\GG.Communication\GG.Communication.csproj" />
     <ProjectReference Include="..\GG.Comum.Tests\GG.Comum.Tests.csproj" />
     <ProjectReference Include="..\GG.Exception\GG.Exception.csproj" />

@@ -3,7 +3,7 @@ version: "3.9"
 services:
   gg.api:
     build:
-      context: ..\ProjetoGG_pt2\GG.Api        # caminho até a pasta do .csproj / Dockerfile
+      context: ..\ProjetoGG_arquiteturaTDD\GG.Api        # caminho até a pasta do .csproj / Dockerfile
       dockerfile: Dockerfile        # nome do arquivo Dockerfile
     container_name: gg.api
     ports:

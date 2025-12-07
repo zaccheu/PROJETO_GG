@@ -15,7 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\GG.Aplication\GG.Application.csproj" />
+		<ProjectReference Include="..\GG.Application\GG.Application.csproj" />
 		<ProjectReference Include="..\GG.Exception\GG.Exception.csproj" />
 		<ProjectReference Include="..\GG.Infrastructure\GG.Infrastructure.csproj" />
 		<ProjectReference Include="..\GG.Communication\GG.Communication.csproj" />

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\GG.Comum.Tests\\GG.Comum.Tests.csproj": {}
+    "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG\\ProjetoGG_arquiteturaTDD\\GG.Comum.Tests\\GG.Comum.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\GG.Communication\\GG.Communication.csproj": {
+    "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG\\ProjetoGG_arquiteturaTDD\\GG.Communication\\GG.Communication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\GG.Communication\\GG.Communication.csproj",
+        "projectUniqueName": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG\\ProjetoGG_arquiteturaTDD\\GG.Communication\\GG.Communication.csproj",
         "projectName": "GG.Communication",
-        "projectPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\GG.Communication\\GG.Communication.csproj",
+        "projectPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG\\ProjetoGG_arquiteturaTDD\\GG.Communication\\GG.Communication.csproj",
         "packagesPath": "C:\\Users\\Guzac\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\GG.Communication\\obj\\",
+        "outputPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG\\ProjetoGG_arquiteturaTDD\\GG.Communication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -69,14 +69,14 @@
         }
       }
     },
-    "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\GG.Comum.Tests\\GG.Comum.Tests.csproj": {
+    "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG\\ProjetoGG_arquiteturaTDD\\GG.Comum.Tests\\GG.Comum.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\GG.Comum.Tests\\GG.Comum.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG\\ProjetoGG_arquiteturaTDD\\GG.Comum.Tests\\GG.Comum.Tests.csproj",
         "projectName": "GG.Comum.Tests",
-        "projectPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\GG.Comum.Tests\\GG.Comum.Tests.csproj",
+        "projectPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG\\ProjetoGG_arquiteturaTDD\\GG.Comum.Tests\\GG.Comum.Tests.csproj",
         "packagesPath": "C:\\Users\\Guzac\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\GG.Comum.Tests\\obj\\",
+        "outputPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG\\ProjetoGG_arquiteturaTDD\\GG.Comum.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -98,8 +98,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\GG.Communication\\GG.Communication.csproj": {
-                "projectPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG_pt2\\GG.Communication\\GG.Communication.csproj"
+              "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG\\ProjetoGG_arquiteturaTDD\\GG.Communication\\GG.Communication.csproj": {
+                "projectPath": "C:\\Users\\Guzac\\Documents\\GitHub\\ProjetoGG\\ProjetoGG_arquiteturaTDD\\GG.Communication\\GG.Communication.csproj"
               }
             }
           }
