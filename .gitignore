@@ -151,3 +151,11 @@ Angular.Server/bin/Debug/net8.0/spa.proxy.json
 /.vs/ProjectEvaluation/gg.metadata.v8.bin
 /.vs/ProjectEvaluation/gg.projects.v8.bin
 /.vs/ProjectEvaluation/gg.strings.v8.bin
+/GG.Api/bin/Debug
+/GG.Api/obj
+/GG.Aplication/bin/Debug
+/GG.Aplication/obj
+/GG.Communication/bin/Debug
+/GG.Communication/obj
+/GG.Comum.Tests/bin/Debug
+/GG.Comum.Tests/obj
