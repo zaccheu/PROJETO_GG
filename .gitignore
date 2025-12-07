@@ -173,3 +173,5 @@ Angular.Server/bin/Debug/net8.0/spa.proxy.json
 /Validator.Tests/bin/Debug/net8.0/GG.Infrastructure.pdb
 /GG.Aplication/obj/Debug/net8.0/GG.Application.dll
 /GG.Aplication/obj/Debug/net8.0/refint/GG.Application.dll
+/bin/Debug
+/obj

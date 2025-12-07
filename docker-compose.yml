@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  gg.api:
+    build:
+      context: ..\ProjetoGG_pt2\GG.Api        # caminho até a pasta do .csproj / Dockerfile
+      dockerfile: Dockerfile        # nome do arquivo Dockerfile
+    container_name: gg.api
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_URLS=http://+:8080
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   container_name: ggbar-front
+  #   ports:
+  #     - "4200:80"
+  #   depends_on:
+  #     - api
