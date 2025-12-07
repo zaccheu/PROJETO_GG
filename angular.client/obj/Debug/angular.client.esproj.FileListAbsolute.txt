@@ -1,2 +1,0 @@
-C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\Angular\angular.client\obj\Debug\angular.client.esproj.CoreCompileInputs.cache
-C:\Users\Guzac\Documents\GitHub\ProjetoGG_pt2\angular.client\obj\Debug\angular.client.esproj.CoreCompileInputs.cache
