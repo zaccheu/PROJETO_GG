@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using GG.Application.UseCases.Produtos;
 using GG.Communication.Responses;
 using GG.Domain.Entity;
 using GG.Domain.Repositories;
@@ -27,19 +26,6 @@ namespace GG.Application.UseCases.Produtos
             _mapper = mapper;
         }
 
-        public async Task<ResponseProdutosRegistradosJson> Salvar(RequestSalvarProdutoJson produto)
-        {
-            Validate(produto);
-
-            var entity = _mapper.Map<Produto>(produto);
-
-            await _repository.Add(entity);
-
-            await _unitOfWork.Commit();
-
-            return _mapper.Map<ResponseProdutosRegistradosJson>(entity);
-        }
-
         private void Validate(RequestSalvarProdutoJson requestSalvarProdutoJson)
         {
             var validator = new ProdutoValidator();
@@ -54,70 +40,33 @@ namespace GG.Application.UseCases.Produtos
             }
         }
 
-        //[HttpPost("Alterar")]
-        //public RetornoAcao Alterar(Produto cliente)
-        //{
-        //    RetornoAcao retorno = new RetornoAcao();
-        //    try
-        //    {
-        //        _context.Update(cliente);
+        public async Task<ResponseProdutosRegistradosJson> Salvar(RequestSalvarProdutoJson produto)
+        {
+            Validate(produto);
 
-        //        return retorno;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
+            var entity = _mapper.Map<Produto>(produto);
 
-        //[HttpGet("Listar")]
-        //public List<Produto> Listar()
-        //{
-        //    try
-        //    {
-        //        List<Produto> listaProduto = _context.Produtos
-        //                                             .Include(c => c.Categoria)
-        //                                             .ToList();
+            await _repository.Add(entity);
 
-        //        if (listaProduto == null)
-        //        {
-        //            throw new Exception("Nenhum item encontrado!");
-        //        }
-        //        else
-        //            return listaProduto;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
+            await _unitOfWork.Commit();
 
-        //[HttpDelete("Deletar")]
-        //public RetornoAcao Deletar(int Id)
-        //{
-        //    RetornoAcao retorno = new RetornoAcao();
-        //    Produto prato = new Produto();
+            return _mapper.Map<ResponseProdutosRegistradosJson>(entity);
+        }
 
-        //    try
-        //    {
-        //        int id = _context.Produtos.Where(c => c.IdProduto == Id).Select(x => x.IdProduto).FirstOrDefault();
+        public async Task<List<ResponseProdutosJson>> Listar()
+        {
+            var lista = _repository.GetAll();
 
-        //        if (id == 0)
-        //        {
-        //            retorno.Mensagem = "Produto não encontrado!";
-        //        }
-        //        else
-        //        {
-        //            _context.Remove(prato);
-        //            _context.SaveChanges();
-        //            retorno.Mensagem = "Produto deletado com sucesso!";
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        retorno.Mensagem = ex.Message;
-        //    }
-        //    return retorno;
-        //}
+            return _mapper.Map<List<ResponseProdutosJson>>(lista);
+        }
+
+        public async Task<bool> Deletar(int idProduto)
+        {
+            var retorno = await _repository.Delete(idProduto);
+
+            await _unitOfWork.Commit();
+
+            return retorno;
+        }
     }
 }

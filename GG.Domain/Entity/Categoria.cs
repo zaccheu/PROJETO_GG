@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
-namespace GG.Entity;
+namespace GG.Domain.Entity;
 
 [Table("Categorias")]
 public class Categoria
@@ -11,4 +10,7 @@ public class Categoria
 
     [Column("Nome")]
     public string Nome { get; set; }
+
+    [Column("Descricao")]
+    public string Descricao { get; set; }
 }

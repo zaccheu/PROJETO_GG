@@ -5,5 +5,6 @@ namespace GG.Domain.Repositories.Produtos;
 public interface IProdutosRepository
 {
     Task Add(Produto pedido);
-    Task<List<Produto>> GetAll();
+    Task <bool> Delete(int idProduto);
+    Task <List<Produto>> GetAll();
 }
