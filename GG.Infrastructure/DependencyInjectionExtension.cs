@@ -22,7 +22,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IProdutosRepository, ProdutosRepository>();
         services.AddScoped<IPedidosRepository, PedidosRepository>();
-        services.AddScoped<ICategorio aRepository, CategoriaRepository>();
+        services.AddScoped<ICategoriaRepository, CategoriaRepository>();
     }
 
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
