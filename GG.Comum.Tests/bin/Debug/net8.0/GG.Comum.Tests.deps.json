@@ -25,7 +25,10 @@
       },
       "GG.Communication/1.0.0": {
         "runtime": {
-          "GG.Communication.dll": {}
+          "GG.Communication.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
