@@ -1,29 +1,29 @@
-﻿using GG.Models;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GG.Domain.Entity
+
+namespace GG.Domain.Entity;
+
+[Table("Pedidos")]
+public class Pedido
 {
+    [Key]
+    [Column("IdPedido")]
+    public int IdPedido { get; set; }
 
+    [Column("Valor")]
+    public decimal Valor { get; set; }
 
-    [Table("Pedidos")]
-    public class Pedido
-    {
-        [Column("IdPedido")]
-        public int IdPedido { get; set; }
+    [Column("Data")]
+    public DateTime Data { get; set; }
 
-        [Column("Data")]
-        public DateTime Data { get; set; }
+    [Column("Paga")]
+    public bool Paga { get; set; }
 
-        [ForeignKey("Cliente")]
-        public int IdCliente { get; set; }
+    [ForeignKey("IdCliente")]
+    public int? IdCliente { get; set; }
 
-        [Column("Valor")]
-        public decimal Valor { get; set; }
-
-        [Column("Pago")]
-        public bool Pago { get; set; }
-
-        public ICollection<PedidoProduto> PedidoProdutos { get; set; }  // Produtos do pedido
-    }
-
+    // Navegação
+    public virtual Cliente? Cliente { get; set; }
+    public virtual ICollection<PedidoPrato> PedidoPratos { get; set; }
 }

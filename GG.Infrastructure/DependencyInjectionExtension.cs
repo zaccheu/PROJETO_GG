@@ -1,5 +1,6 @@
 ﻿using GG.Domain.Repositories;
 using GG.Domain.Repositories.Categorias;
+using GG.Domain.Repositories.Despesas;
 using GG.Domain.Repositories.Pedidos;
 using GG.Domain.Repositories.Produtos;
 using GG.Infrastructure.DataAccess;
@@ -20,9 +21,10 @@ public static class DependencyInjectionExtension
     private static void AddRepositories(IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<IProdutosRepository, ProdutosRepository>();
-        services.AddScoped<IPedidosRepository, PedidosRepository>();
+        services.AddScoped<IProdutoRepository, ProdutosRepository>();
+        services.AddScoped<IPedidoRepository, PedidosRepository>();
         services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+        services.AddScoped<IDespesaRepository, DespesaRepository>();
     }
 
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)

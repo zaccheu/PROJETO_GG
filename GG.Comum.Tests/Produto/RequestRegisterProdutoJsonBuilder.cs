@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using GG.Dto;
+using GG.Communication.Requests;
 
 namespace GG.Comum.Tests.Produto;
 

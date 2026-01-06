@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GG.Communication.Requests;
 using GG.Communication.Responses;
 using GG.Domain.Entity;
 using GG.Domain.Repositories;
@@ -24,6 +25,7 @@ public class CategoriaUseCase : ICategoriaUseCase
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
+
     private void Validate(RequestSalvarCategoriaJson requestSalvarProdutoJson)
     {
         var validator = new CategoriaValidator();

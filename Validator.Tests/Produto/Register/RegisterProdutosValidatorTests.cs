@@ -2,7 +2,7 @@ using FluentAssertions;
 using GG.Application.UseCases.Produtos;
 using GG.Comum.Tests.Produto;
 
-namespace Validator.Tests.Produtos.Register;
+namespace Validator.Tests.Produto.Register;
 
 public class RegisterProdutosValidatorTests
 {

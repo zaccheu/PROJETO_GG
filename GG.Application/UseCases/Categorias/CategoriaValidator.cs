@@ -1,7 +1,8 @@
 ﻿using FluentValidation;
-using GG.Dto;
+using GG.Communication.Requests;
 
 namespace GG.Application.UseCases.Categorias;
+
 public class CategoriaValidator : AbstractValidator<RequestSalvarCategoriaJson>
 {
     public CategoriaValidator()

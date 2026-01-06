@@ -1,4 +1,4 @@
-﻿namespace GG.Dto;
+﻿namespace GG.Communication.Requests;
 
 public class RequestSalvarProdutoJson
 {

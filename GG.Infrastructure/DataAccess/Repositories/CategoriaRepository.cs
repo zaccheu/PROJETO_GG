@@ -13,15 +13,9 @@ internal class CategoriaRepository : ICategoriaRepository
         _dbContext = dbContext;
     }
 
-    public async Task Add(Categoria categoria)
-    {
-        await _dbContext.Categorias.AddAsync(categoria);
-    }
+    public async Task Add(Categoria categoria) => await _dbContext.Categorias.AddAsync(categoria);
 
-    public async Task<List<Categoria>> GetAll()
-    {
-        return await _dbContext.Categorias.ToListAsync();
-    }
+    public async Task<List<Categoria>> GetAll() => await _dbContext.Categorias.ToListAsync();
 
     public async Task<bool> Delete(int idCategoria)
     {
@@ -30,8 +24,6 @@ internal class CategoriaRepository : ICategoriaRepository
         if (categoria != null)
         {
             _dbContext.Categorias.Remove(categoria);
-
-            _dbContext.SaveChanges();
 
             return true;
         }

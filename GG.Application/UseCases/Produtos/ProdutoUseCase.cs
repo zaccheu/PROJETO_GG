@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using GG.Communication.Responses;
+using GG.Communication.Requests;
+using GG.Communication.Responses.Produto;
 using GG.Domain.Entity;
 using GG.Domain.Repositories;
 using GG.Domain.Repositories.Produtos;
-using GG.Dto;
 using GG.Exception.ExceptionsBase;
 using System.Data;
 
@@ -12,12 +12,12 @@ namespace GG.Application.UseCases.Produtos
 {
     public class ProdutoUseCase : IProdutoUseCase
     {
-        private readonly IProdutosRepository _repository;
+        private readonly IProdutoRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public ProdutoUseCase(
-            IProdutosRepository repository,
+            IProdutoRepository repository,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
@@ -40,7 +40,7 @@ namespace GG.Application.UseCases.Produtos
             }
         }
 
-        public async Task<ResponseProdutosRegistradosJson> Salvar(RequestSalvarProdutoJson produto)
+        public async Task<ResponseProdutoRegistradoJson> Salvar(RequestSalvarProdutoJson produto)
         {
             Validate(produto);
 
@@ -50,7 +50,7 @@ namespace GG.Application.UseCases.Produtos
 
             await _unitOfWork.Commit();
 
-            return _mapper.Map<ResponseProdutosRegistradosJson>(entity);
+            return _mapper.Map<ResponseProdutoRegistradoJson>(entity);
         }
 
         public async Task<List<ResponseProdutosJson>> Listar()

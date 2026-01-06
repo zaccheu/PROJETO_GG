@@ -14,8 +14,4 @@
     <ProjectReference Include="..\GG.Communication\GG.Communication.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Pedido\" />
-  </ItemGroup>
-
 </Project>

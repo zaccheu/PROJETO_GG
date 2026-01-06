@@ -9,5 +9,7 @@ internal class GGDbContext : DbContext
 
     public DbSet<Produto> Produtos { get; set; }
     public DbSet<Pedido> Pedidos { get; set; }
+    public DbSet<PedidoPrato> PedidoItem { get; set; }
     public DbSet<Categoria> Categorias { get; set; }
+    public DbSet<Despesa> Despesas { get; set; }
 }

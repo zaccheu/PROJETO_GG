@@ -2,7 +2,7 @@
 
 namespace GG.Domain.Repositories.Produtos;
 
-public interface IProdutosRepository
+public interface IProdutoRepository
 {
     Task Add(Produto pedido);
     Task <bool> Delete(int idProduto);

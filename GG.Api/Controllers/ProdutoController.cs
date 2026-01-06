@@ -1,7 +1,7 @@
 ﻿using GG.Application.UseCases.Categorias;
-using GG.Application.UseCases.Produtos;
+using GG.Communication.Requests;
 using GG.Communication.Responses;
-using GG.Dto;
+using GG.Communication.Responses.Produto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GG.Api.Controllers
@@ -11,7 +11,7 @@ namespace GG.Api.Controllers
     public class ProdutoController : ControllerBase
     {
         [HttpPost("Salvar")]
-        [ProducesResponseType(typeof(ResponseProdutosRegistradosJson), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ResponseProdutoRegistradoJson), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Salvar(
             [FromServices] ICategoriaUseCase useCase,
@@ -40,7 +40,7 @@ namespace GG.Api.Controllers
 
         //sem teste
         [HttpGet("Listar")]
-        [ProducesResponseType(typeof(ResponseProdutosRegistradosJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResponseProdutoRegistradoJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
         public async Task<List<ResponseCategoriaJson>> Listar(
             [FromServices] ICategoriaUseCase useCase)
@@ -50,7 +50,7 @@ namespace GG.Api.Controllers
 
 
         [HttpDelete("Deletar")]
-        [ProducesResponseType(typeof(ResponseProdutosRegistradosJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResponseProdutoRegistradoJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
         public async Task<bool> Deletar(
             [FromServices] ICategoriaUseCase useCase,

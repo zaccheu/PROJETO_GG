@@ -1,4 +1,5 @@
 ﻿using GG.Application.UseCases.Categorias;
+using GG.Communication.Requests;
 using GG.Communication.Responses;
 using GG.Dto;
 using Microsoft.AspNetCore.Mvc;

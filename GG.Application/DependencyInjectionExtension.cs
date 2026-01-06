@@ -1,5 +1,7 @@
 ﻿using GG.Application.AutoMapper;
 using GG.Application.UseCases.Categorias;
+using GG.Application.UseCases.Despesas;
+using GG.Application.UseCases.Pedidos;
 using GG.Application.UseCases.Produtos;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,5 +24,7 @@ public static class DependencyInjectionExtension
     {
         services.AddScoped<IProdutoUseCase, ProdutoUseCase>();
         services.AddScoped<ICategoriaUseCase, CategoriaUseCase>();
+        services.AddScoped<IPedidoUseCase, PedidoUseCase>();
+        services.AddScoped<IDespesaUseCase, DespesaUseCase>();
     }
 }

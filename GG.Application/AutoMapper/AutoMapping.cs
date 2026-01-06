@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using GG.Communication.Requests;
 using GG.Communication.Responses;
+using GG.Communication.Responses.Despesa;
+using GG.Communication.Responses.Pedido;
+using GG.Communication.Responses.Produto;
 using GG.Domain.Entity;
-using GG.Dto;
 
 namespace GG.Application.AutoMapper;
 
@@ -17,13 +20,19 @@ public class AutoMapping : Profile
     {
         CreateMap<RequestSalvarProdutoJson, Produto>();
         CreateMap<RequestSalvarCategoriaJson, Categoria>();
+        CreateMap<RequestSalvarPedidoJson, Pedido>();
+        //CreateMap<RequestSalvarPedidoItemJson, PedidoItem>();
     }
 
     private void EntityToResponse()
     {
-        CreateMap<Produto, ResponseProdutosRegistradosJson>();
+        CreateMap<Produto, ResponseProdutoRegistradoJson>();
         CreateMap<Produto, ResponseProdutosJson>();
         CreateMap<Categoria, ResponseCategoriaRegistradaJson>();
         CreateMap<Categoria, ResponseCategoriaJson>();
+        CreateMap<Pedido, ResponsePedidoRegistradoJson>();
+        CreateMap<Pedido, ResponsePedidoJson>();
+        CreateMap<Despesa, ResponseDespesaJson>();
+        CreateMap<Despesa, ResponseDespesaRegistradaJson>();
     }
 }
