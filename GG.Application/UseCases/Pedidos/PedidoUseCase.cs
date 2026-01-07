@@ -2,6 +2,7 @@
 using GG.Application.UseCases.Produtos;
 using GG.Communication.Requests;
 using GG.Communication.Responses.Pedido;
+using GG.Domain.Entity;
 using GG.Domain.Repositories;
 using GG.Domain.Repositories.Pedidos;
 using GG.Exception.ExceptionsBase;

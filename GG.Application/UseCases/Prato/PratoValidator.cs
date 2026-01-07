@@ -1,11 +1,11 @@
 ﻿using FluentValidation;
 using GG.Communication.Requests;
 
-namespace GG.Application.UseCases.PedidoPrato;
+namespace GG.Application.UseCases.Prato;
 
-public class PedidoPratoValidator : AbstractValidator<RequestSalvarPedidoPratoJson>
+public class PratoValidator : AbstractValidator<RequestSalvarPratoJson>
 {
-    public PedidoPratoValidator()
+    public PratoValidator()
     {
         RuleFor(x => x.Produtos)
             .NotNull().WithMessage("A lista de produtos é obrigatória.")

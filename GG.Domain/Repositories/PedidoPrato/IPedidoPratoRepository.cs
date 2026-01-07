@@ -1,8 +1,10 @@
-﻿namespace GG.Domain.Repositories.PedidoPrato;
+﻿using PedidoPratoEntity = GG.Domain.Entity.PedidoPrato;
+
+namespace GG.Domain.Repositories.PedidoPrato;
 
 public interface IPedidoPratoRepository
 {
-    Task Add(Entity.PedidoPrato pedido);
+    Task Add(PedidoPratoEntity pedido);
     Task<bool> Delete(int idPedido);
-    Task<List<Entity.PedidoPrato>> GetAll();
+    Task<List<PedidoPratoEntity>> GetAll();
 }

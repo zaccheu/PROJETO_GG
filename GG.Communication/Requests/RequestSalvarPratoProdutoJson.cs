@@ -1,6 +1,6 @@
 ﻿namespace GG.Communication.Requests;
 
-public class RequestSalvarPedidoPratoJson
+public class RequestSalvarPratoProdutoJson
 {
     public int? Id { get; set; }
     public List<RequestSalvarProdutoJson> Produtos { get; set; } = new();

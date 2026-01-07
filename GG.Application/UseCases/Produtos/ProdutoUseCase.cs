@@ -53,11 +53,11 @@ namespace GG.Application.UseCases.Produtos
             return _mapper.Map<ResponseProdutoRegistradoJson>(entity);
         }
 
-        public async Task<List<ResponseProdutosJson>> Listar()
+        public async Task<List<ResponseProdutoJson>> Listar()
         {
             var lista = _repository.GetAll();
 
-            return _mapper.Map<List<ResponseProdutosJson>>(lista);
+            return _mapper.Map<List<ResponseProdutoJson>>(lista);
         }
 
         public async Task<bool> Deletar(int idProduto)

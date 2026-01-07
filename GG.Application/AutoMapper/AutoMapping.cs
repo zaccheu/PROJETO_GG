@@ -27,7 +27,7 @@ public class AutoMapping : Profile
     private void EntityToResponse()
     {
         CreateMap<Produto, ResponseProdutoRegistradoJson>();
-        CreateMap<Produto, ResponseProdutosJson>();
+        CreateMap<Produto, ResponseProdutoJson>();
         CreateMap<Categoria, ResponseCategoriaRegistradaJson>();
         CreateMap<Categoria, ResponseCategoriaJson>();
         CreateMap<Pedido, ResponsePedidoRegistradoJson>();
