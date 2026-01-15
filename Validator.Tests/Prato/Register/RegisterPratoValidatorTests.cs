@@ -41,7 +41,7 @@ public class RegisterPratoValidatorTests
     {
         var validator = new PratoValidator();
         var request = RequestSalvarPratoJsonBuilder.Build();
-        request.ValorTotal = preco;
+        request.Preco = preco;
 
         var result = validator.Validate(request);
 

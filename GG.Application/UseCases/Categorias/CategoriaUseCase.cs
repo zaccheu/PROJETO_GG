@@ -4,7 +4,6 @@ using GG.Communication.Responses;
 using GG.Domain.Entity;
 using GG.Domain.Repositories;
 using GG.Domain.Repositories.Categorias;
-using GG.Dto;
 using GG.Exception.ExceptionsBase;
 using System.Data;
 

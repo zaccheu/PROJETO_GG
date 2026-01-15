@@ -7,31 +7,36 @@ public class PratoValidator : AbstractValidator<RequestSalvarPratoJson>
 {
     public PratoValidator()
     {
+        RuleFor(x => x.Nome)
+            .NotEmpty().WithMessage("O nome do prato é obrigatório.")
+            .MaximumLength(100).WithMessage("O nome do prato deve ter no máximo 100 caracteres.");
+
+        RuleFor(x => x.Preco)
+            .GreaterThan(0M).WithMessage("O preço do prato deve ser maior que zero.");
+
         RuleFor(x => x.Produtos)
-            .NotNull().WithMessage("A lista de produtos é obrigatória.")
-            .NotEmpty().WithMessage("O pedido deve conter ao menos um produto.");
+            .NotNull().WithMessage("A lista de produtos do prato é obrigatória.")
+            .NotEmpty().WithMessage("O prato deve conter ao menos um produto.");
 
-        RuleForEach(x => x.Produtos).ChildRules(prod =>
+        RuleForEach(x => x.Produtos).ChildRules(pratoProduto =>
         {
-            prod.RuleFor(p => p.Id)
-                .GreaterThan(0).WithMessage("O Id do produto é obrigatório e deve ser maior que zero.");
+            // cada item PratoProduto deve conter uma lista de produtos válidos
+            pratoProduto.RuleFor(pp => pp.Produtos)
+                .NotNull().WithMessage("A lista de produtos interna é obrigatória.")
+                .NotEmpty().WithMessage("Deve haver pelo menos um produto dentro do item do prato.");
 
-            prod.RuleFor(p => p.Quantidade)
-                .GreaterThan(0).WithMessage("A quantidade do produto deve ser maior que zero.");
+            pratoProduto.RuleForEach(pp => pp.Produtos).ChildRules(produto =>
+            {
+                produto.RuleFor(p => p.Quantidade)
+                    .GreaterThan(0).WithMessage("A quantidade do produto deve ser maior que zero.");
 
-            prod.RuleFor(p => p.Preco)
-                .GreaterThan(0).WithMessage("O preço do produto deve ser maior que zero.");
+                produto.RuleFor(p => p.Preco)
+                    .GreaterThan(0M).WithMessage("O preço do produto deve ser maior que zero.");
+
+                produto.RuleFor(p => p.Nome)
+                    .NotEmpty().WithMessage("O nome do produto é obrigatório.")
+                    .MaximumLength(100).WithMessage("O nome do produto deve ter no máximo 100 caracteres.");
+            });
         });
-
-        RuleFor(x => x.IdPedido)
-            .GreaterThan(0).WithMessage("O Id do pedido é obrigatório e deve ser maior que zero.");
-
-        RuleFor(x => x.ValorTotal)
-            .GreaterThanOrEqualTo(0M)
-            .When(x => x.ValorTotal.HasValue)
-            .WithMessage("O valor total do pedido não pode ser negativo.");
-
-        RuleFor(x => x.DataPedido)
-            .NotEqual(default(DateTime)).WithMessage("A data do pedido é obrigatória.");
     }
 }

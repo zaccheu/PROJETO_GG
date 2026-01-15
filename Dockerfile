@@ -1,41 +1,31 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
+# Build stage
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# Copy csproj files and restore as distinct layers
+COPY ["GG.Api/GG.Api.csproj", "GG.Api/"]
+COPY ["GG.Application/GG.Application.csproj", "GG.Application/"]
+COPY ["GG.Communication/GG.Communication.csproj", "GG.Communication/"]
+COPY ["GG.Domain/GG.Domain.csproj", "GG.Domain/"]
+COPY ["GG.Exception/GG.Exception.csproj", "GG.Exception/"]
+COPY ["GG.Infrastructure/GG.Infrastructure.csproj", "GG.Infrastructure/"]
+
+RUN dotnet restore "GG.Api/GG.Api.csproj"
+
+# Copy everything else and build
+COPY . .
+WORKDIR "/src/GG.Api"
+RUN dotnet build "GG.Api.csproj" -c Release -o /app/build
+
+# Publish stage
+FROM build AS publish
+RUN dotnet publish "GG.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# Runtime stage
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
 
-COPY src/ .
-
-WORKDIR /app/GG.Api
-
-RUN dotnet restore
-
-RUN dotnet publish -c Release -o /app/out
-
-
-
-
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
-WORKDIR /app
-
-COPY --from=build-env /app/out .
-
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "GG.Api.dll"]
-
-
-
-
-# ./api/Dockerfile
-#FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-#WORKDIR /app
-#EXPOSE 8080
-#
-#FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-#WORKDIR /src
-#COPY ["GG.Api/GG.Api.csproj", "GG.Api/"]
-#RUN dotnet restore "ExpertStore.Api/ExpertStore.Api.csproj"
-#COPY . .
-#WORKDIR "/src/ExpertStore.Api"
-#RUN dotnet publish -c Release -o /app/publish
-#
-#FROM base AS final
-#WORKDIR /app
-#COPY --from=build /app/publish .
-#ENTRYPOINT ["dotnet", "GG.Api.dll"]

@@ -1,23 +1,51 @@
-version: "3.9"
+version: '3.8'
 
 services:
+  # SQL Server Database
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: gg-sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    networks:
+      - gg-network
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong@Passw0rd -Q "SELECT 1" || exit 1
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+
+  # API ASP.NET Core
   gg.api:
     build:
-      context: ..\PROJETO_GG\GG.Api        # caminho até a pasta do .csproj / Dockerfile
-      dockerfile: Dockerfile        # nome do arquivo Dockerfile
-    container_name: gg.api
+      context: .
+      dockerfile: Dockerfile
+    container_name: gg-api
     ports:
       - "5000:8080"
+      - "5001:8081"
     environment:
-      - ASPNETCORE_URLS=http://+:8080
       - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__MeuDbContext=Server=sqlserver;Database=GGBar;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;MultipleActiveResultSets=true
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    networks:
+      - gg-network
+    restart: on-failure
 
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   container_name: ggbar-front
-  #   ports:
-  #     - "4200:80"
-  #   depends_on:
-  #     - api
+volumes:
+  sqlserver-data:
+    driver: local
+
+networks:
+  gg-network:
+    driver: bridge

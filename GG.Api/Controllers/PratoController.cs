@@ -1,44 +1,88 @@
-﻿using GG.Application.UseCases.Pedidos;
+﻿using GG.Application.UseCases.Pratos;
 using GG.Communication.Requests;
 using GG.Communication.Responses;
-using GG.Communication.Responses.Pedido;
+using GG.Communication.Responses.Prato;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GG.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/pratos")]
     [ApiController]
     public class PratoController : ControllerBase
     {
-        [HttpPost("Salvar")]
-        [ProducesResponseType(typeof(ResponsePedidoRegistradoJson), StatusCodes.Status201Created)]
+        /// <summary>
+        /// Cria um novo prato ou bebida
+        /// </summary>
+        [HttpPost]
+        [ProducesResponseType(typeof(ResponsePratoRegistradoJson), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Salvar(
-            [FromServices] IPedidoUseCase useCase,
-            [FromBody] RequestSalvarPedidoJson pedido)
+        public async Task<IActionResult> Criar(
+            [FromServices] IPratoUseCase useCase,
+            [FromBody] RequestSalvarPratoJson prato)
         {
-            var retorno = await useCase.Salvar(pedido);
-
-            return Created(string.Empty, retorno);
+            var retorno = await useCase.Salvar(prato);
+            return CreatedAtAction(nameof(ObterPorId), new { id = retorno.IdPrato }, retorno);
         }
 
-        [HttpGet("Listar")]
-        [ProducesResponseType(typeof(ResponsePedidoJson), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-        public async Task<List<ResponsePedidoJson>> Listar(
-            [FromServices] IPedidoUseCase useCase)
+        /// <summary>
+        /// Lista todos os pratos e bebidas
+        /// </summary>
+        [HttpGet]
+        [ProducesResponseType(typeof(List<ResponsePratoJson>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Listar([FromServices] IPratoUseCase useCase)
         {
-            return await useCase.Listar();
+            var pratos = await useCase.Listar();
+            return Ok(pratos);
         }
 
-        [HttpDelete("Deletar")]
-        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-        public async Task<bool> Deletar(
-            [FromServices] IPedidoUseCase useCase,
-            [FromBody] int idPedido)
+        /// <summary>
+        /// Obtém os detalhes de um prato ou bebida específico
+        /// </summary>
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(ResponsePratoJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> ObterPorId(
+            [FromServices] IPratoUseCase useCase,
+            [FromRoute] int id)
         {
-            return await useCase.Deletar(idPedido);
+            var prato = await useCase.ObterPorId(id);
+            if (prato == null)
+                return NotFound(new { mensagem = "Prato não encontrado." });
+
+            return Ok(prato);
+        }
+
+        /// <summary>
+        /// Atualiza um prato ou bebida existente
+        /// </summary>
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(ResponsePratoRegistradoJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Atualizar(
+            [FromServices] IPratoUseCase useCase,
+            [FromRoute] int id,
+            [FromBody] RequestSalvarPratoJson prato)
+        {
+            var retorno = await useCase.Atualizar(id, prato);
+            return Ok(retorno);
+        }
+
+        /// <summary>
+        /// Remove um prato ou bebida
+        /// </summary>
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Deletar(
+            [FromServices] IPratoUseCase useCase,
+            [FromRoute] int id)
+        {
+            var sucesso = await useCase.Deletar(id);
+            if (!sucesso)
+                return NotFound(new { mensagem = "Prato não encontrado." });
+
+            return NoContent();
         }
     }
 }

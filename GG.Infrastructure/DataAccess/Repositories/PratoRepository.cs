@@ -7,23 +7,34 @@ namespace GG.Infrastructure.DataAccess.Repositories;
 internal class PratoRepository : IPratoRepository
 {
     private readonly GGDbContext _dbContext;
+    
     public PratoRepository(GGDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task Add(Prato produto) => await _dbContext.Prato.AddAsync(produto);
+    public async Task Add(Prato prato) => await _dbContext.Pratos.AddAsync(prato);
 
-    public async Task<List<Prato>> GetAll() => await _dbContext.Prato.AsNoTracking().ToListAsync();
+    public async Task<List<Prato>> GetAll() => 
+        await _dbContext.Pratos
+            .AsNoTracking()
+            .ToListAsync();
 
-    public async Task<bool> Delete(int idPedido)
+    public async Task<Prato?> GetById(int idPrato) =>
+        await _dbContext.Pratos
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p => p.IdPrato == idPrato);
+
+    public void Update(Prato prato) => _dbContext.Pratos.Update(prato);
+
+    public async Task<bool> Delete(int idPrato)
     {
-        Prato? pedido = _dbContext.Prato.Where(x => x.IdPrato == idPedido).FirstOrDefault();
+        var prato = await _dbContext.Pratos
+            .FirstOrDefaultAsync(x => x.IdPrato == idPrato);
 
-        if (pedido != null)
+        if (prato != null)
         {
-            _dbContext.Prato.Remove(pedido);
-
+            _dbContext.Pratos.Remove(prato);
             return true;
         }
 
