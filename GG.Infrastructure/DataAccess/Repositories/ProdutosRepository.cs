@@ -18,7 +18,7 @@ internal class ProdutosRepository : IProdutoRepository
     
     public async Task<bool> Delete(int idProduto)
     {
-        Produto? produto = _dbContext.Produtos.Where(x => x.IdProduto == idProduto).FirstOrDefault();
+        Produto? produto = _dbContext.Produtos.Where(x => x.Id == idProduto).FirstOrDefault();
 
         if (produto != null)
         {

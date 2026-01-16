@@ -40,23 +40,15 @@ internal class PedidoUseCase : IPedidoUseCase
         }
     }
 
-    public async Task<ResponsePedidoRegistradoJson> Salvar(RequestSalvarPedidoJson pedido)
+    public async Task<ResponsePedidoRegistradoJson> Salvar(RequestSalvarPedidoJson request)
     {
-        Validate(pedido);
+        Validate(request);
 
-        // Criar o pedido
-        var entity = new Pedido
-        {
-            Data = pedido.Data,
-            IdCliente = pedido.IdCliente,
-            Paga = false,
-            Valor = 0,
-            PedidoPratos = new List<Domain.Entity.PedidoPrato>()
-        };
+        Pedido pedido = _mapper.Map<Pedido>(request);
 
         // Adicionar os itens e calcular o valor total
         decimal valorTotal = 0;
-        foreach (var item in pedido.Itens)
+        foreach (var item in request.Itens)
         {
             var prato = await _pratoRepository.GetById(item.IdPrato);
             if (prato == null)
@@ -64,21 +56,22 @@ internal class PedidoUseCase : IPedidoUseCase
 
             var pedidoPrato = new Domain.Entity.PedidoPrato
             {
-                IdPrato = item.IdPrato,
                 Quantidade = item.Quantidade,
-                Preco = prato.Preco
+                Preco = prato.Preco,
+                Pedido = pedido,
+                Prato = prato
             };
 
-            entity.PedidoPratos.Add(pedidoPrato);
+            pedido.PedidoPratos?.Add(pedidoPrato);
             valorTotal += prato.Preco * item.Quantidade;
         }
 
-        entity.Valor = valorTotal;
+        pedido.Valor = valorTotal;
 
-        await _repository.Add(entity);
+        await _repository.Add(pedido);
         await _unitOfWork.Commit();
 
-        return _mapper.Map<ResponsePedidoRegistradoJson>(entity);
+        return _mapper.Map<ResponsePedidoRegistradoJson>(pedido);
     }
 
     public async Task<List<ResponsePedidoJson>> Listar()
@@ -98,31 +91,14 @@ internal class PedidoUseCase : IPedidoUseCase
 
     public async Task<ResponsePedidoRegistradoJson> AdicionarItens(int idPedido, RequestAdicionarItensPedidoJson request)
     {
-        var pedido = await _repository.GetByIdWithDetails(idPedido);
+        Pedido? pedido = await _repository.GetByIdWithDetails(idPedido);
         if (pedido == null)
             throw new NotFoundException("Pedido não encontrado.");
 
-        decimal valorAdicional = 0;
-        foreach (var item in request.Itens)
-        {
-            var prato = await _pratoRepository.GetById(item.IdPrato);
-            if (prato == null)
-                throw new NotFoundException($"Prato com ID {item.IdPrato} não encontrado.");
+        pedido = _mapper.Map<Pedido>(request);
 
-            var pedidoPrato = new Domain.Entity.PedidoPrato
-            {
-                IdPedido = idPedido,
-                IdPrato = item.IdPrato,
-                Quantidade = item.Quantidade,
-                Preco = prato.Preco
-            };
+        pedido.Valor += pedido.PedidoPratos!.Sum(x => x.Preco);
 
-            pedido.PedidoPratos.Add(pedidoPrato);
-            valorAdicional += prato.Preco * item.Quantidade;
-        }
-
-        pedido.Valor += valorAdicional;
-        _repository.Update(pedido);
         await _unitOfWork.Commit();
 
         return _mapper.Map<ResponsePedidoRegistradoJson>(pedido);

@@ -1,4 +1,4 @@
-﻿using GG.Application.UseCases.Categorias;
+﻿using GG.Application.UseCases.Produtos;
 using GG.Communication.Requests;
 using GG.Communication.Responses;
 using GG.Communication.Responses.Produto;
@@ -14,8 +14,8 @@ namespace GG.Api.Controllers
         [ProducesResponseType(typeof(ResponseProdutoRegistradoJson), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Salvar(
-            [FromServices] ICategoriaUseCase useCase,
-            [FromBody] RequestSalvarCategoriaJson categoria)
+            [FromServices] IProdutoUseCase useCase,
+            [FromBody] RequestSalvarProdutoJson categoria)
         {
             var retorno = await useCase.Salvar(categoria);
 
@@ -42,8 +42,8 @@ namespace GG.Api.Controllers
         [HttpGet("Listar")]
         [ProducesResponseType(typeof(ResponseProdutoRegistradoJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-        public async Task<List<ResponseCategoriaJson>> Listar(
-            [FromServices] ICategoriaUseCase useCase)
+        public async Task<List<ResponseProdutoJson>> Listar(
+            [FromServices] IProdutoUseCase useCase)
         {
             return await useCase.Listar();
         }
@@ -53,7 +53,7 @@ namespace GG.Api.Controllers
         [ProducesResponseType(typeof(ResponseProdutoRegistradoJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
         public async Task<bool> Deletar(
-            [FromServices] ICategoriaUseCase useCase,
+            [FromServices] IProdutoUseCase useCase,
             [FromBody] int idProduto)
         {
             return await useCase.Deletar(idProduto);

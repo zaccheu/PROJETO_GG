@@ -1,3 +1,4 @@
+using CashFlow.Infrastructure.Migrations;
 using GG.Api.Filters;
 using GG.Application;
 using GG.Infrastructure;
@@ -31,4 +32,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+await MigrateDatabase();
+
 app.Run();
+
+async Task MigrateDatabase()
+{
+    await using var scope = app.Services.CreateAsyncScope();
+
+    await DataBaseMigration.MigrateDatabase(scope.ServiceProvider);
+}

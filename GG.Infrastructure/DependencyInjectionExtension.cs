@@ -1,5 +1,4 @@
 ﻿using GG.Domain.Repositories;
-using GG.Domain.Repositories.Categorias;
 using GG.Domain.Repositories.Despesas;
 using GG.Domain.Repositories.PedidoPrato;
 using GG.Domain.Repositories.Pedidos;
@@ -31,7 +30,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IPratoProdutoRepository, PratoProdutoRepository>();
         services.AddScoped<IProdutoRepository, ProdutosRepository>();
         services.AddScoped<IDespesaRepository, DespesaRepository>();
-        services.AddScoped<ICategoriaRepository, CategoriaRepository>();
     }
 
     private static void AddDbContext(IServiceCollection services, IConfiguration configuration)

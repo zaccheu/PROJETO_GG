@@ -1,25 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿namespace GG.Domain.Entity;
 
-namespace GG.Domain.Entity;
-
-[Table("PratoProduto")]
 public class PratoProduto
 {
-    [Key]
-    [Column("IdPrato")]
-    [ForeignKey("Prato")]
-    public int IdPrato { get; set; }
-
-    [Key]
-    [Column("IdProduto")]
-    [ForeignKey("Produto")]
-    public int IdProduto { get; set; }
-
-    [Column("Quantidade")]
+    public int Id { get; set; }
     public decimal Quantidade { get; set; }
 
     // Navegação
-    public virtual Prato Prato { get; set; }
-    public virtual Produto Produto { get; set; }
+    public Prato Prato { get; set; } = null!;
+    public Produto Produto { get; set; } = null!;
 }

@@ -1,5 +1,4 @@
 ﻿using GG.Application.AutoMapper;
-using GG.Application.UseCases.Categorias;
 using GG.Application.UseCases.Despesas;
 using GG.Application.UseCases.Pedidos;
 using GG.Application.UseCases.Pratos;
@@ -24,7 +23,6 @@ public static class DependencyInjectionExtension
     private static void AddUseCases(IServiceCollection services)
     {
         services.AddScoped<IProdutoUseCase, ProdutoUseCase>();
-        services.AddScoped<ICategoriaUseCase, CategoriaUseCase>();
         services.AddScoped<IPedidoUseCase, PedidoUseCase>();
         services.AddScoped<IDespesaUseCase, DespesaUseCase>();
         services.AddScoped<IPratoUseCase, PratoUseCase>();

@@ -1,28 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿namespace GG.Domain.Entity;
 
-namespace GG.Domain.Entity;
-
-[Table("Produtos")]
 public class Produto
 {
-    [Key]
-    [Column("IdProduto")]
-    public int IdProduto { get; set; }
-
-    [Column("Nome")]
-    public string Nome { get; set; }
-
-    [Column("Preco")]
+    public int Id { get; set; }
+    public string Nome { get; set; } = string.Empty;
     public decimal Preco { get; set; }
-
-    [Column("QuantidadeAtual")]
     public decimal QuantidadeAtual { get; set; }
-
-    [Column("UnidadeDeMedida")]
-    public string UnidadeDeMedida { get; set; }
+    public string UnidadeDeMedida { get; set; } = string.Empty;
 
     // Navegação
-    public virtual ICollection<PratoProduto> PratoProdutos { get; set; }
-    public virtual ICollection<Fornece> Fornecimentos { get; set; }
+    public ICollection<PratoProduto>? PratoProdutos { get; set; }
+    public ICollection<Fornece>? Fornecimentos { get; set; }
 }

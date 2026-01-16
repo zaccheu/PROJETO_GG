@@ -12,4 +12,5 @@ public class RequestItemPedidoJson
 {
     public int IdPrato { get; set; }
     public int Quantidade { get; set; }
+    public decimal Preco { get; set; }
 }
