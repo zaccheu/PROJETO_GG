@@ -16,7 +16,7 @@ services:
     networks:
       - gg-network
     healthcheck:
-      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong@Passw0rd -Q "SELECT 1" || exit 1
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U GG -P YourStrong@Passw0rd -Q "SELECT 1" || exit 1
       interval: 10s
       timeout: 3s
       retries: 10
@@ -34,7 +34,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:8080
-      - ConnectionStrings__MeuDbContext=Server=sqlserver;Database=GGBar;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;MultipleActiveResultSets=true
+      - ConnectionStrings__MeuDbContext=Server=localhost;Database=GGBar;User Id=GG;Password=YourStrong@Passw0rd;TrustServerCertificate=True;MultipleActiveResultSets=true
     depends_on:
       sqlserver:
         condition: service_healthy
