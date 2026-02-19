@@ -9,6 +9,6 @@ public class Pedido
     public int ClienteId { get; set; }
     // Navegação
     public Cliente? Cliente { get; set; }
-    public int PedidoPratosId { get; set; }
+
     public ICollection<PedidoPrato>? PedidoPratos { get; set; }
 }

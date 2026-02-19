@@ -6,8 +6,6 @@ public class Prato
     public string Nome { get; set; } = string.Empty;
     public decimal Preco { get; set; }
     // Navegação
-    public int PedidoPratoId { get; set; }
-    public ICollection<PedidoPrato> PedidoPratos { get; set; } = null!;
-    public int PratoProdutosId { get; set; }
-    public ICollection<PratoProduto> PratoProdutos { get; set; } = null!;
+    public ICollection<PedidoPrato?> PedidoPratos { get; set; } = null!;
+    public ICollection<PratoProduto?> PratoProdutos { get; set; } = null!;
 }

@@ -10,9 +10,6 @@ namespace GG.Api.Controllers
     [ApiController]
     public class PratoController : ControllerBase
     {
-        /// <summary>
-        /// Cria um novo prato ou bebida
-        /// </summary>
         [HttpPost]
         [ProducesResponseType(typeof(ResponsePratoRegistradoJson), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
@@ -21,18 +18,15 @@ namespace GG.Api.Controllers
             [FromBody] RequestSalvarPratoJson prato)
         {
             var retorno = await useCase.Salvar(prato);
-            return CreatedAtAction(nameof(ObterPorId), new { id = retorno.IdPrato }, retorno);
+
+            return Created();
         }
 
-        /// <summary>
-        /// Lista todos os pratos e bebidas
-        /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(List<ResponsePratoJson>), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Listar([FromServices] IPratoUseCase useCase)
+        public async Task<List<ResponsePratoJson>> Listar([FromServices] IPratoUseCase useCase)
         {
-            var pratos = await useCase.Listar();
-            return Ok(pratos);
+            return await useCase.Listar();
         }
 
         /// <summary>
@@ -46,6 +40,7 @@ namespace GG.Api.Controllers
             [FromRoute] int id)
         {
             var prato = await useCase.ObterPorId(id);
+
             if (prato == null)
                 return NotFound(new { mensagem = "Prato não encontrado." });
 
@@ -79,6 +74,7 @@ namespace GG.Api.Controllers
             [FromRoute] int id)
         {
             var sucesso = await useCase.Deletar(id);
+
             if (!sucesso)
                 return NotFound(new { mensagem = "Prato não encontrado." });
 

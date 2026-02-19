@@ -57,7 +57,6 @@ internal class PedidoUseCase : IPedidoUseCase
             var pedidoPrato = new Domain.Entity.PedidoPrato
             {
                 Quantidade = item.Quantidade,
-                Preco = prato.Preco,
                 Pedido = pedido,
                 Prato = prato
             };
@@ -97,7 +96,7 @@ internal class PedidoUseCase : IPedidoUseCase
 
         pedido = _mapper.Map<Pedido>(request);
 
-        pedido.Valor += pedido.PedidoPratos!.Sum(x => x.Preco);
+        pedido.Valor += pedido.PedidoPratos!.Sum(x => x.Prato.Preco);
 
         await _unitOfWork.Commit();
 

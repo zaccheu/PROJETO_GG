@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GG.Infrastructure.Migrations
 {
     [DbContext(typeof(GGDbContext))]
-    [Migration("20260217225931_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260219020837_Migration1")]
+    partial class Migration1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,7 +59,7 @@ namespace GG.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("DataVencimento")
+                    b.Property<DateTime>("DataVencimento")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Descricao")
@@ -70,6 +70,7 @@ namespace GG.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Nome")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Valor")
@@ -137,7 +138,7 @@ namespace GG.Infrastructure.Migrations
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Data")
+                    b.Property<DateTime?>("Data")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("Paga")
@@ -166,9 +167,6 @@ namespace GG.Infrastructure.Migrations
 
                     b.Property<int>("PratoId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Quantidade")
                         .HasColumnType("int");

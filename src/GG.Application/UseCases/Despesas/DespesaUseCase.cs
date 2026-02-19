@@ -74,6 +74,13 @@ public class DespesaUseCase : IDespesaUseCase
         return _mapper.Map<List<ResponseDespesaJson>>(lista);
     }
 
+    public async Task<ResponseDespesaJson> GetById(int idDespesa)
+    {
+        var despesa = await _repository.GetById(idDespesa);
+
+        return _mapper.Map<ResponseDespesaJson>(despesa);
+    }
+
     public async Task<bool> Deletar(int idDespesa)
     {
         var retorno = await _repository.Delete(idDespesa);

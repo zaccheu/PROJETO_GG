@@ -10,7 +10,7 @@ namespace GG.Api.Controllers
     [ApiController]
     public class DespesaController : ControllerBase
     {
-        [HttpPost("Salvar")]
+        [HttpPost]
         [ProducesResponseType(typeof(ResponseDespesaRegistradaJson), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Salvar(
@@ -39,7 +39,7 @@ namespace GG.Api.Controllers
         //}
 
         //sem teste
-        [HttpGet("Listar")]
+        [HttpGet]
         [ProducesResponseType(typeof(ResponseDespesaRegistradaJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
         public async Task<List<ResponseDespesaJson>> Listar(
@@ -48,15 +48,32 @@ namespace GG.Api.Controllers
             return await useCase.Listar();
         }
 
-
-        [HttpDelete("Deletar")]
-        [ProducesResponseType(typeof(ResponseDespesaRegistradaJson), StatusCodes.Status200OK)]
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(ResponseDespesaJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-        public async Task<bool> Deletar(
-            [FromServices] IDespesaUseCase useCase,
-            [FromBody] int idDespesa)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<ResponseDespesaJson>> ObterPorId(
+        [FromRoute] int id,
+        [FromServices] IDespesaUseCase useCase)
         {
-            return await useCase.Deletar(idDespesa);
+            var despesa = await useCase.GetById(id);
+
+            if (despesa is null)
+                return NotFound();
+
+            return Ok(despesa);
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Deletar(
+            [FromServices] IDespesaUseCase useCase,
+            [FromRoute] int id)
+        {
+            await useCase.Deletar(id);
+
+            return NoContent();
         }
     }
 }

@@ -22,6 +22,7 @@ public class AutoMapping : Profile
         CreateMap<RequestSalvarPedidoJson, Pedido>()
             .ForMember(dest => dest.PedidoPratos, opt => opt.Ignore());
         CreateMap<RequestSalvarPratoJson, Prato>();
+        CreateMap<RequestSalvarDespesaJson, Despesa>();
     }
 
     private void EntityToResponse()

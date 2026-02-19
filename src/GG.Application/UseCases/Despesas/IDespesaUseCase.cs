@@ -8,4 +8,5 @@ public interface IDespesaUseCase
     Task<ResponseDespesaRegistradaJson> Salvar(RequestSalvarDespesaJson despesa);
     Task<List<ResponseDespesaJson>> Listar();
     Task<bool> Deletar(int idDespesa);
+    Task<ResponseDespesaJson> GetById(int idDespesa);
 }
